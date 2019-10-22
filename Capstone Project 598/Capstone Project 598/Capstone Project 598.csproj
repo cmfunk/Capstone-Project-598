@@ -46,14 +46,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="other\ButtonZ.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="other\ButtonZ.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="User Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User Dashboard.Designer.cs">
+      <DependentUpon>User Dashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="other\MinButton.cs">
       <SubType>Component</SubType>
@@ -62,6 +68,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Dashboard.resx">
+      <DependentUpon>User Dashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

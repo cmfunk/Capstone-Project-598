@@ -16,7 +16,7 @@ namespace Capstone_Project_598
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new UserInterfae());
+            Application.Run(new UserInterface());
         }
     }
 }
