@@ -97,7 +97,7 @@
             // registerUserButton
             // 
             this.registerUserButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.registerUserButton.Location = new System.Drawing.Point(55, 93);
+            this.registerUserButton.Location = new System.Drawing.Point(55, 82);
             this.registerUserButton.Name = "registerUserButton";
             this.registerUserButton.Size = new System.Drawing.Size(95, 65);
             this.registerUserButton.TabIndex = 6;
@@ -107,7 +107,7 @@
             // logonButton
             // 
             this.logonButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logonButton.Location = new System.Drawing.Point(222, 93);
+            this.logonButton.Location = new System.Drawing.Point(221, 82);
             this.logonButton.Name = "logonButton";
             this.logonButton.Size = new System.Drawing.Size(95, 65);
             this.logonButton.TabIndex = 7;
@@ -157,7 +157,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 218);
+            this.ClientSize = new System.Drawing.Size(379, 191);
             this.Controls.Add(this.logonButton);
             this.Controls.Add(this.registerUserButton);
             this.Controls.Add(this.TopPanel);
