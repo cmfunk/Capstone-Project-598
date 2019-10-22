@@ -12,7 +12,8 @@ namespace Capstone_Project_598
 {
     public partial class AddUserForm : Form
     {
-        UserInterface ownerForm = null;
+        private UserInterface ownerForm = null;
+        private List<string> UsernameDictionary = new List<string>();
 
         bool isTopPanelDragged = false;
         private Point offset;
@@ -22,6 +23,8 @@ namespace Capstone_Project_598
             InitializeComponent();
             usernameXLabel.Visible = false;
             this.ownerForm = ownerForm;
+
+            UsernameDictionary.Add("cmfunk"); UsernameDictionary.Add("root");
         }
 
         private void MinButton_Click(object sender, EventArgs e)
@@ -59,6 +62,28 @@ namespace Capstone_Project_598
         private void TopPanel_MouseUp(object sender, MouseEventArgs e)
         {
             isTopPanelDragged = false;
+        }
+
+        private void ChooseUsernameButton_Click(object sender, EventArgs e)
+        {
+            string g = usernameTextBox.Text.Trim();
+            bool unique = true;
+
+            if (g.Length > 0)
+            {
+                foreach(string tmp in UsernameDictionary)
+                {
+                    if (g == tmp)
+                        unique = false;
+                }
+                if (unique)
+                    MessageBox.Show("### Username is available ###");//create user in SQL Database 
+                if (!unique)
+                    MessageBox.Show("Sorry, that username is already taken. :/");
+            }
+            else
+                usernameXLabel.Visible = true;
+            
         }
     }
 }
