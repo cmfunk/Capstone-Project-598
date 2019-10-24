@@ -18,7 +18,8 @@ namespace Capstone_Project_598
 {
     public partial class UserInterface : Form
     {
-        private AddUserForm form2 = null;
+        private AddUserForm form1 = null;
+        private LogonForm form2 = null;
 
         bool isTopPanelDragged = false;
         private Point offset;
@@ -70,8 +71,8 @@ namespace Capstone_Project_598
         {
             if (Application.OpenForms.OfType<AddUserForm>().Count() == 0)
             {
-                form2 = new AddUserForm(this);
-                form2.Show();
+                form1 = new AddUserForm(this);
+                form1.Show();
             }
             else if (Application.OpenForms.OfType<AddUserForm>().Count() == 1)
                 Application.OpenForms.OfType<AddUserForm>().First().BringToFront();
@@ -80,10 +81,32 @@ namespace Capstone_Project_598
                 FormCollection fc = Application.OpenForms;
                 foreach (Form frm in fc)
                 {
+                    if (frm.GetType() == form1.GetType())
+                        frm.Close();
+                }
+                form1 = new AddUserForm(this);
+                form1.Show();
+            }
+        }
+
+        private void LogonButton_Click(object sender, EventArgs e)
+        {
+            if (Application.OpenForms.OfType<LogonForm>().Count() == 0)
+            {
+                form2 = new LogonForm(this);
+                form2.Show();
+            }
+            else if (Application.OpenForms.OfType<LogonForm>().Count() == 1)
+                Application.OpenForms.OfType<LogonForm>().First().BringToFront();
+            else //if (Application.OpenForms.OfType<LogonForm>().Count() > 1)
+            {
+                FormCollection fc = Application.OpenForms;
+                foreach (Form frm in fc)
+                {
                     if (frm.GetType() == form2.GetType())
                         frm.Close();
                 }
-                form2 = new AddUserForm(this);
+                form2 = new LogonForm(this);
                 form2.Show();
             }
         }

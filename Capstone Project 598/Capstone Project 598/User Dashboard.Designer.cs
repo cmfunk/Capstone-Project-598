@@ -32,11 +32,11 @@
             this.leftTopPanel = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.TopPanel = new System.Windows.Forms.Panel();
-            this.minButton = new Capstone_Project_598.ButtonZ();
-            this.closeButton = new Capstone_Project_598.ButtonZ();
             this.label3 = new System.Windows.Forms.Label();
             this.registerUserButton = new System.Windows.Forms.Button();
             this.logonButton = new System.Windows.Forms.Button();
+            this.minButton = new Capstone_Project_598.ButtonZ();
+            this.closeButton = new Capstone_Project_598.ButtonZ();
             this.leftTopPanel.SuspendLayout();
             this.TopPanel.SuspendLayout();
             this.SuspendLayout();
@@ -92,6 +92,42 @@
             this.TopPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseMove);
             this.TopPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseUp);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
+            this.label3.Location = new System.Drawing.Point(31, 12);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(66, 24);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Home";
+            this.label3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseDown);
+            this.label3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseMove);
+            this.label3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseUp);
+            // 
+            // registerUserButton
+            // 
+            this.registerUserButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.registerUserButton.Location = new System.Drawing.Point(55, 82);
+            this.registerUserButton.Name = "registerUserButton";
+            this.registerUserButton.Size = new System.Drawing.Size(95, 65);
+            this.registerUserButton.TabIndex = 6;
+            this.registerUserButton.Text = "Register User";
+            this.registerUserButton.UseVisualStyleBackColor = true;
+            this.registerUserButton.Click += new System.EventHandler(this.RegisterUserButton_Click);
+            // 
+            // logonButton
+            // 
+            this.logonButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logonButton.Location = new System.Drawing.Point(221, 82);
+            this.logonButton.Name = "logonButton";
+            this.logonButton.Size = new System.Drawing.Size(95, 65);
+            this.logonButton.TabIndex = 7;
+            this.logonButton.Text = "Logon";
+            this.logonButton.UseVisualStyleBackColor = true;
+            this.logonButton.Click += new System.EventHandler(this.LogonButton_Click);
+            // 
             // minButton
             // 
             this.minButton.BZBackColor = System.Drawing.Color.White;
@@ -130,41 +166,6 @@
             this.closeButton.TextLocation_Y = -2;
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.CloseButton_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
-            this.label3.Location = new System.Drawing.Point(31, 12);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 24);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Home";
-            this.label3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseDown);
-            this.label3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseMove);
-            this.label3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseUp);
-            // 
-            // registerUserButton
-            // 
-            this.registerUserButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.registerUserButton.Location = new System.Drawing.Point(55, 82);
-            this.registerUserButton.Name = "registerUserButton";
-            this.registerUserButton.Size = new System.Drawing.Size(95, 65);
-            this.registerUserButton.TabIndex = 6;
-            this.registerUserButton.Text = "Register User";
-            this.registerUserButton.UseVisualStyleBackColor = true;
-            this.registerUserButton.Click += new System.EventHandler(this.RegisterUserButton_Click);
-            // 
-            // logonButton
-            // 
-            this.logonButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logonButton.Location = new System.Drawing.Point(221, 82);
-            this.logonButton.Name = "logonButton";
-            this.logonButton.Size = new System.Drawing.Size(95, 65);
-            this.logonButton.TabIndex = 7;
-            this.logonButton.Text = "Logon";
-            this.logonButton.UseVisualStyleBackColor = true;
             // 
             // UserInterface
             // 
