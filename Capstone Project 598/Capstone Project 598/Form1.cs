@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace Capstone_Project_598
 {
@@ -19,6 +20,7 @@ namespace Capstone_Project_598
 
         private string Username;
         private string Password;
+        private Image ImageSegmentation;
 
         bool isTopPanelDragged = false;
         private Point offset;
@@ -28,8 +30,9 @@ namespace Capstone_Project_598
             InitializeComponent();
             this.ownerForm = ownerForm;
             charactersXLabel.Visible = true;    specCharsLabel.Visible = false;
-            chooseUsernameButton.Enabled = false;
-            submitPictureButton.Enabled = false;
+            chooseUsernameButton.Enabled = false;       uploadFileButton.Visible = false;
+            submitPictureButton.Visible = false;        submitPictureButton.Enabled = true;
+            pictureBox1.Visible = false;
             //State = 0;
 
             UsernameDictionary.Add("cmfunk"); UsernameDictionary.Add("root");
@@ -150,30 +153,27 @@ namespace Capstone_Project_598
                 string hash = System.Text.Encoding.ASCII.GetString(data);
 
                 Password = ree;
-                MessageBox.Show("## Password is set! ##");
+                //MessageBox.Show("## Password is set! ##");
 
                 bigTextLabel.Text = "3) Please upload a picture";
-                choosePasswordButton.Visible = false;
-                passwordTextBox.Visible = false;
+                choosePasswordButton.Visible = false; chooseUsernameButton.Visible = false;
+                passwordTextBox.Visible = false;            
                 label5.Visible = false;         //"spaces will be omitted"
+
+                uploadFileButton.Visible = true;        label1.Visible = false;
             }
-
-
-
-
         }
 
         private void PasswordTextBox_TextChangedDelayed(object sender, EventArgs e)
         {
-            string ttt = passwordTextBox.Text.Trim();
+            string ttt = passwordTextBox.Text;      string ifneededd22 = "";
 
+            if (ttt.Contains(" "))
+            {
+                ifneededd22 = ttt.Replace(" ", "");
+                passwordTextBox.Text = ifneededd22;
+            }
 
-
-            /*if (ttt.Length > 5 && !regexItem.IsMatch(ttt))
-                choosePasswordButton.Enabled = true;*/
-
-            /*charactersXLabel.Visible = ttt.Length > 5 ? false : true;
-            specCharsLabel.Visible = regexItem.IsMatch(ttt) ? true : false;*/
         }
 
         private void PasswordTextBox_TextChanged(object sender, EventArgs e)
@@ -181,11 +181,61 @@ namespace Capstone_Project_598
             string tt = passwordTextBox.Text.Trim();
             var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
 
-            choosePasswordButton.Enabled = tt.Length < 6 ? false : true;
-            charactersXLabel.Enabled = tt.Length < 6 ? true : false;
+            if (tt.Length < 6 || regexItem.IsMatch(tt))
+                choosePasswordButton.Enabled = false;
+            else
+                choosePasswordButton.Enabled = true;
+            
+            charactersXLabel.Visible = tt.Length < 6 ? true : false;
 
             specCharsLabel.Visible = regexItem.IsMatch(tt) ? true : false;
-            
+        }
+
+        private void UploadFileButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog OpenFD = new OpenFileDialog();
+            OpenFD.Title = "Locate image file.";
+            OpenFD.Filter = "Jpg|*.jpg|Jpge|*.jpge|Jpeg|*.jpeg|PNG|*.png";
+            OpenFD.FileName = null;
+            string fileName;            Image test = null;
+            if (OpenFD.ShowDialog() == DialogResult.OK)
+            {
+                //querybuilder qu = new querybuilder();
+                fileName = OpenFD.FileName;
+                Object refmissing = System.Reflection.Missing.Value;
+
+                if (File.Exists(fileName))
+                {
+                    try
+                    {
+                        test = Image.FromFile(OpenFD.FileName);
+                        if (test != null)
+                        {
+                            uploadFileButton.Visible = false;
+
+                            ImageSegmentation = test;   //pictureBox1.Image = test;
+                            //MessageBox.Show("## Image Set! ##");
+                            pictureBox1.Image = test;       pictureBox1.Visible = true;
+
+                            //bigTextLabel.Text = "4) Please choose a pattern";
+                            submitPictureButton.Visible = true;    submitPictureButton.Enabled = true;
+                        }
+                    }
+                    catch (Exception ex)
+                    {   MessageBox.Show("Error" + ex.Message.ToString());   }
+                }
+                else
+                { MessageBox.Show("Unable to locate file....", "#ERROR#"); }
+                
+            }
+            OpenFD.Dispose();
+        }
+
+        private void SubmitPictureButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("## Image Set! ##");
+            bigTextLabel.Text = "4) Please choose a pattern";
+            submitPictureButton.Visible = false;        pictureBox1.Visible = false;
 
         }
     }

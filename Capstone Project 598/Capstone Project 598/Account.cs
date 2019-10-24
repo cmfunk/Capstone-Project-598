@@ -20,13 +20,14 @@ namespace Capstone_Project_598
         private string _password;
 
         //need picture file
-        private string _colorscode;
+        private string _colorcode;
 
 
         public Account(string username, string password, /* double pmt, */string colorcode)
         {
-
-
+            _username = username;
+            _password = password;
+            _colorcode = colorcode;
 
             /*_creditor = cred;
             _rate = rate;

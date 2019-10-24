@@ -14,7 +14,7 @@ namespace Capstone_Project_598
 
         public TextBox2()
         {
-            _timer.Interval = 1200;
+            _timer.Interval = 1400;
             _timer.Tick += new EventHandler(_timer_Tick);
         }
 

@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.TopPanel = new System.Windows.Forms.Panel();
-            this.minButton = new Capstone_Project_598.ButtonZ();
-            this.closeButton = new Capstone_Project_598.ButtonZ();
             this.leftTopPanel = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.bigTextLabel = new System.Windows.Forms.Label();
@@ -38,13 +36,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.charactersXLabel = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.usernameTextBox = new Capstone_Project_598.TextBox2();
             this.specCharsLabel = new System.Windows.Forms.Label();
-            this.passwordTextBox = new Capstone_Project_598.TextBox2();
             this.choosePasswordButton = new System.Windows.Forms.Button();
             this.submitPictureButton = new System.Windows.Forms.Button();
+            this.uploadFileButton = new System.Windows.Forms.Button();
+            this.usernameTextBox = new Capstone_Project_598.TextBox2();
+            this.minButton = new Capstone_Project_598.ButtonZ();
+            this.closeButton = new Capstone_Project_598.ButtonZ();
+            this.passwordTextBox = new Capstone_Project_598.TextBox2();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.TopPanel.SuspendLayout();
             this.leftTopPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // TopPanel
@@ -61,45 +64,6 @@
             this.TopPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseDown);
             this.TopPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseMove);
             this.TopPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseUp);
-            // 
-            // minButton
-            // 
-            this.minButton.BZBackColor = System.Drawing.Color.White;
-            this.minButton.DisplayText = "_";
-            this.minButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.minButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.minButton.ForeColor = System.Drawing.Color.Black;
-            this.minButton.Location = new System.Drawing.Point(125, 3);
-            this.minButton.MouseClickColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(140)))), ((int)(((byte)(60)))));
-            this.minButton.MouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(180)))), ((int)(((byte)(80)))));
-            this.minButton.Name = "minButton";
-            this.minButton.Size = new System.Drawing.Size(31, 24);
-            this.minButton.TabIndex = 2;
-            this.minButton.Text = "_";
-            this.minButton.TextLocation_X = 6;
-            this.minButton.TextLocation_Y = -18;
-            this.minButton.UseVisualStyleBackColor = true;
-            this.minButton.Click += new System.EventHandler(this.MinButton_Click);
-            // 
-            // closeButton
-            // 
-            this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.closeButton.BZBackColor = System.Drawing.Color.White;
-            this.closeButton.DisplayText = "X";
-            this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.closeButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closeButton.ForeColor = System.Drawing.Color.Black;
-            this.closeButton.Location = new System.Drawing.Point(151, 4);
-            this.closeButton.MouseClickColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.closeButton.MouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(20)))), ((int)(((byte)(40)))));
-            this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(24, 22);
-            this.closeButton.TabIndex = 1;
-            this.closeButton.Text = "X";
-            this.closeButton.TextLocation_X = 5;
-            this.closeButton.TextLocation_Y = -2;
-            this.closeButton.UseVisualStyleBackColor = true;
-            this.closeButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // leftTopPanel
             // 
@@ -177,17 +141,6 @@
             this.label5.TabIndex = 14;
             this.label5.Text = "# Spaces will be Omitted #";
             // 
-            // usernameTextBox
-            // 
-            this.usernameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usernameTextBox.Location = new System.Drawing.Point(23, 120);
-            this.usernameTextBox.MaxLength = 20;
-            this.usernameTextBox.Name = "usernameTextBox";
-            this.usernameTextBox.Size = new System.Drawing.Size(158, 26);
-            this.usernameTextBox.TabIndex = 15;
-            this.usernameTextBox.TextChangedDelayed += new System.EventHandler(this.TextBox21_TextChangedDelayed);
-            this.usernameTextBox.TextChanged += new System.EventHandler(this.UsernameTextBox_TextChanged);
-            // 
             // specCharsLabel
             // 
             this.specCharsLabel.AutoSize = true;
@@ -196,17 +149,6 @@
             this.specCharsLabel.Size = new System.Drawing.Size(134, 13);
             this.specCharsLabel.TabIndex = 16;
             this.specCharsLabel.Text = "## 1 Special Character ##";
-            // 
-            // passwordTextBox
-            // 
-            this.passwordTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordTextBox.Location = new System.Drawing.Point(23, 120);
-            this.passwordTextBox.MaxLength = 20;
-            this.passwordTextBox.Name = "passwordTextBox";
-            this.passwordTextBox.Size = new System.Drawing.Size(158, 26);
-            this.passwordTextBox.TabIndex = 17;
-            this.passwordTextBox.TextChangedDelayed += new System.EventHandler(this.PasswordTextBox_TextChangedDelayed);
-            this.passwordTextBox.TextChanged += new System.EventHandler(this.PasswordTextBox_TextChanged);
             // 
             // choosePasswordButton
             // 
@@ -222,36 +164,122 @@
             // submitPictureButton
             // 
             this.submitPictureButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.submitPictureButton.Location = new System.Drawing.Point(200, 189);
+            this.submitPictureButton.Location = new System.Drawing.Point(47, 189);
             this.submitPictureButton.Name = "submitPictureButton";
             this.submitPictureButton.Size = new System.Drawing.Size(103, 33);
             this.submitPictureButton.TabIndex = 19;
-            this.submitPictureButton.Text = "Continue";
+            this.submitPictureButton.Text = "spContinue";
             this.submitPictureButton.UseVisualStyleBackColor = true;
+            this.submitPictureButton.Click += new System.EventHandler(this.SubmitPictureButton_Click);
+            // 
+            // uploadFileButton
+            // 
+            this.uploadFileButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uploadFileButton.Location = new System.Drawing.Point(37, 108);
+            this.uploadFileButton.Name = "uploadFileButton";
+            this.uploadFileButton.Size = new System.Drawing.Size(132, 50);
+            this.uploadFileButton.TabIndex = 20;
+            this.uploadFileButton.Text = "Upload Picture";
+            this.uploadFileButton.UseVisualStyleBackColor = true;
+            this.uploadFileButton.Visible = false;
+            this.uploadFileButton.Click += new System.EventHandler(this.UploadFileButton_Click);
+            // 
+            // usernameTextBox
+            // 
+            this.usernameTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.usernameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usernameTextBox.Location = new System.Drawing.Point(23, 120);
+            this.usernameTextBox.MaxLength = 20;
+            this.usernameTextBox.Name = "usernameTextBox";
+            this.usernameTextBox.Size = new System.Drawing.Size(158, 26);
+            this.usernameTextBox.TabIndex = 15;
+            this.usernameTextBox.TextChangedDelayed += new System.EventHandler(this.TextBox21_TextChangedDelayed);
+            this.usernameTextBox.TextChanged += new System.EventHandler(this.UsernameTextBox_TextChanged);
+            // 
+            // minButton
+            // 
+            this.minButton.BZBackColor = System.Drawing.Color.White;
+            this.minButton.DisplayText = "_";
+            this.minButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.minButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.minButton.ForeColor = System.Drawing.Color.Black;
+            this.minButton.Location = new System.Drawing.Point(125, 3);
+            this.minButton.MouseClickColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(140)))), ((int)(((byte)(60)))));
+            this.minButton.MouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(180)))), ((int)(((byte)(80)))));
+            this.minButton.Name = "minButton";
+            this.minButton.Size = new System.Drawing.Size(31, 24);
+            this.minButton.TabIndex = 2;
+            this.minButton.Text = "_";
+            this.minButton.TextLocation_X = 6;
+            this.minButton.TextLocation_Y = -18;
+            this.minButton.UseVisualStyleBackColor = true;
+            this.minButton.Click += new System.EventHandler(this.MinButton_Click);
+            // 
+            // closeButton
+            // 
+            this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.closeButton.BZBackColor = System.Drawing.Color.White;
+            this.closeButton.DisplayText = "X";
+            this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closeButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closeButton.ForeColor = System.Drawing.Color.Black;
+            this.closeButton.Location = new System.Drawing.Point(151, 4);
+            this.closeButton.MouseClickColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.closeButton.MouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(20)))), ((int)(((byte)(40)))));
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(24, 22);
+            this.closeButton.TabIndex = 1;
+            this.closeButton.Text = "X";
+            this.closeButton.TextLocation_X = 5;
+            this.closeButton.TextLocation_Y = -2;
+            this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.CloseButton_Click);
+            // 
+            // passwordTextBox
+            // 
+            this.passwordTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passwordTextBox.Location = new System.Drawing.Point(23, 120);
+            this.passwordTextBox.MaxLength = 20;
+            this.passwordTextBox.Name = "passwordTextBox";
+            this.passwordTextBox.Size = new System.Drawing.Size(158, 26);
+            this.passwordTextBox.TabIndex = 17;
+            this.passwordTextBox.TextChangedDelayed += new System.EventHandler(this.PasswordTextBox_TextChangedDelayed);
+            this.passwordTextBox.TextChanged += new System.EventHandler(this.PasswordTextBox_TextChanged);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(200, 90);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(143, 138);
+            this.pictureBox1.TabIndex = 21;
+            this.pictureBox1.TabStop = false;
             // 
             // AddUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(359, 247);
+            this.Controls.Add(this.uploadFileButton);
             this.Controls.Add(this.specCharsLabel);
             this.Controls.Add(this.usernameTextBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.charactersXLabel);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.chooseUsernameButton);
             this.Controls.Add(this.bigTextLabel);
             this.Controls.Add(this.leftTopPanel);
             this.Controls.Add(this.TopPanel);
             this.Controls.Add(this.passwordTextBox);
-            this.Controls.Add(this.choosePasswordButton);
             this.Controls.Add(this.submitPictureButton);
+            this.Controls.Add(this.chooseUsernameButton);
+            this.Controls.Add(this.choosePasswordButton);
+            this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddUserForm";
             this.Text = "Form1";
             this.TopPanel.ResumeLayout(false);
             this.leftTopPanel.ResumeLayout(false);
             this.leftTopPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -274,5 +302,7 @@
         private TextBox2 passwordTextBox;
         private System.Windows.Forms.Button choosePasswordButton;
         private System.Windows.Forms.Button submitPictureButton;
+        private System.Windows.Forms.Button uploadFileButton;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

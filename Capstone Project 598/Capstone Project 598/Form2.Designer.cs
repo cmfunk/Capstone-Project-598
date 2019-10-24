@@ -49,7 +49,7 @@
             this.TopPanel.BackColor = System.Drawing.SystemColors.Window;
             this.TopPanel.Controls.Add(this.minButton);
             this.TopPanel.Controls.Add(this.closeButton);
-            this.TopPanel.Location = new System.Drawing.Point(207, 2);
+            this.TopPanel.Location = new System.Drawing.Point(207, 0);
             this.TopPanel.Name = "TopPanel";
             this.TopPanel.Size = new System.Drawing.Size(153, 50);
             this.TopPanel.TabIndex = 7;
@@ -100,7 +100,7 @@
             // 
             this.leftTopPanel.BackColor = System.Drawing.Color.DarkBlue;
             this.leftTopPanel.Controls.Add(this.logonLabel);
-            this.leftTopPanel.Location = new System.Drawing.Point(0, 2);
+            this.leftTopPanel.Location = new System.Drawing.Point(0, 0);
             this.leftTopPanel.Name = "leftTopPanel";
             this.leftTopPanel.Size = new System.Drawing.Size(208, 50);
             this.leftTopPanel.TabIndex = 8;
