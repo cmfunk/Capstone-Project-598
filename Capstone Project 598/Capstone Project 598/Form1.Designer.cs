@@ -35,10 +35,12 @@
             this.leftTopPanel = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.chooseUsernameLabel = new System.Windows.Forms.Label();
-            this.usernameTextBox = new System.Windows.Forms.TextBox();
             this.chooseUsernameButton = new System.Windows.Forms.Button();
-            this.usernameXLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.charactersXLabel = new System.Windows.Forms.Label();
+            this.specialCharLab = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.usernameTextBox = new Capstone_Project_598.TextBox2();
             this.TopPanel.SuspendLayout();
             this.leftTopPanel.SuspendLayout();
             this.SuspendLayout();
@@ -53,7 +55,7 @@
             this.TopPanel.Controls.Add(this.label3);
             this.TopPanel.Location = new System.Drawing.Point(174, 0);
             this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Size = new System.Drawing.Size(159, 50);
+            this.TopPanel.Size = new System.Drawing.Size(185, 50);
             this.TopPanel.TabIndex = 6;
             this.TopPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseDown);
             this.TopPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseMove);
@@ -66,7 +68,7 @@
             this.minButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.minButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.minButton.ForeColor = System.Drawing.Color.Black;
-            this.minButton.Location = new System.Drawing.Point(98, 4);
+            this.minButton.Location = new System.Drawing.Point(125, 3);
             this.minButton.MouseClickColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(140)))), ((int)(((byte)(60)))));
             this.minButton.MouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(180)))), ((int)(((byte)(80)))));
             this.minButton.Name = "minButton";
@@ -86,7 +88,7 @@
             this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closeButton.ForeColor = System.Drawing.Color.Black;
-            this.closeButton.Location = new System.Drawing.Point(125, 4);
+            this.closeButton.Location = new System.Drawing.Point(151, 4);
             this.closeButton.MouseClickColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.closeButton.MouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(20)))), ((int)(((byte)(40)))));
             this.closeButton.Name = "closeButton";
@@ -142,24 +144,16 @@
             // 
             this.chooseUsernameLabel.AutoSize = true;
             this.chooseUsernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chooseUsernameLabel.Location = new System.Drawing.Point(12, 64);
+            this.chooseUsernameLabel.Location = new System.Drawing.Point(12, 57);
             this.chooseUsernameLabel.Name = "chooseUsernameLabel";
             this.chooseUsernameLabel.Size = new System.Drawing.Size(264, 24);
             this.chooseUsernameLabel.TabIndex = 8;
             this.chooseUsernameLabel.Text = "Please choose a username";
             // 
-            // usernameTextBox
-            // 
-            this.usernameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usernameTextBox.Location = new System.Drawing.Point(62, 106);
-            this.usernameTextBox.Name = "usernameTextBox";
-            this.usernameTextBox.Size = new System.Drawing.Size(145, 26);
-            this.usernameTextBox.TabIndex = 9;
-            // 
             // chooseUsernameButton
             // 
             this.chooseUsernameButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chooseUsernameButton.Location = new System.Drawing.Point(201, 165);
+            this.chooseUsernameButton.Location = new System.Drawing.Point(200, 189);
             this.chooseUsernameButton.Name = "chooseUsernameButton";
             this.chooseUsernameButton.Size = new System.Drawing.Size(103, 33);
             this.chooseUsernameButton.TabIndex = 10;
@@ -167,38 +161,68 @@
             this.chooseUsernameButton.UseVisualStyleBackColor = true;
             this.chooseUsernameButton.Click += new System.EventHandler(this.ChooseUsernameButton_Click);
             // 
-            // usernameXLabel
-            // 
-            this.usernameXLabel.AutoSize = true;
-            this.usernameXLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usernameXLabel.Location = new System.Drawing.Point(49, 112);
-            this.usernameXLabel.Name = "usernameXLabel";
-            this.usernameXLabel.Size = new System.Drawing.Size(16, 20);
-            this.usernameXLabel.TabIndex = 1;
-            this.usernameXLabel.Text = "x";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 151);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 185);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 60);
+            this.label1.Size = new System.Drawing.Size(86, 52);
             this.label1.TabIndex = 11;
             this.label1.Text = "*** User will not \r\nbe created until \r\nentire process is \r\ncompleted ***";
+            // 
+            // charactersXLabel
+            // 
+            this.charactersXLabel.AutoSize = true;
+            this.charactersXLabel.Location = new System.Drawing.Point(211, 98);
+            this.charactersXLabel.Name = "charactersXLabel";
+            this.charactersXLabel.Size = new System.Drawing.Size(138, 13);
+            this.charactersXLabel.TabIndex = 12;
+            this.charactersXLabel.Text = "### Min. 6 Characters ###";
+            // 
+            // specialCharLab
+            // 
+            this.specialCharLab.AutoSize = true;
+            this.specialCharLab.Location = new System.Drawing.Point(213, 115);
+            this.specialCharLab.Name = "specialCharLab";
+            this.specialCharLab.Size = new System.Drawing.Size(134, 13);
+            this.specialCharLab.TabIndex = 13;
+            this.specialCharLab.Text = "## 1 Special Character ##";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(213, 133);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(134, 13);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "# Spaces will be Omitted #";
+            // 
+            // usernameTextBox
+            // 
+            this.usernameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usernameTextBox.Location = new System.Drawing.Point(29, 120);
+            this.usernameTextBox.Name = "usernameTextBox";
+            this.usernameTextBox.Size = new System.Drawing.Size(145, 26);
+            this.usernameTextBox.TabIndex = 15;
+            this.usernameTextBox.TextChangedDelayed += new System.EventHandler(this.TextBox21_TextChangedDelayed);
+            this.usernameTextBox.TextChanged += new System.EventHandler(this.UsernameTextBox_TextChanged);
             // 
             // AddUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(333, 220);
+            this.ClientSize = new System.Drawing.Size(359, 247);
+            this.Controls.Add(this.usernameTextBox);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.specialCharLab);
+            this.Controls.Add(this.charactersXLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.chooseUsernameButton);
-            this.Controls.Add(this.usernameTextBox);
             this.Controls.Add(this.chooseUsernameLabel);
             this.Controls.Add(this.leftTopPanel);
             this.Controls.Add(this.TopPanel);
-            this.Controls.Add(this.usernameXLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddUserForm";
             this.Text = "Form1";
@@ -220,9 +244,11 @@
         private System.Windows.Forms.Panel leftTopPanel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label chooseUsernameLabel;
-        private System.Windows.Forms.TextBox usernameTextBox;
         private System.Windows.Forms.Button chooseUsernameButton;
-        private System.Windows.Forms.Label usernameXLabel;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label charactersXLabel;
+        private System.Windows.Forms.Label specialCharLab;
+        private System.Windows.Forms.Label label5;
+        private TextBox2 usernameTextBox;
     }
 }

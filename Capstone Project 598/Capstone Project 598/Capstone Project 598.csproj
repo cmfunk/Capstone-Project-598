@@ -55,6 +55,9 @@
     <Compile Include="other\ButtonZ.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="TextBox2.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="User Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>

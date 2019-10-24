@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace Capstone_Project_598
 {
@@ -14,6 +15,7 @@ namespace Capstone_Project_598
     {
         private UserInterface ownerForm = null;
         private List<string> UsernameDictionary = new List<string>();
+        System.Windows.Forms.Timer _typingTimer;
 
         bool isTopPanelDragged = false;
         private Point offset;
@@ -21,8 +23,10 @@ namespace Capstone_Project_598
         public AddUserForm(UserInterface ownerForm)
         {
             InitializeComponent();
-            usernameXLabel.Visible = false;
             this.ownerForm = ownerForm;
+            specialCharLab.Visible = true;
+            charactersXLabel.Visible = true;
+            chooseUsernameButton.Enabled = false;
 
             UsernameDictionary.Add("cmfunk"); UsernameDictionary.Add("root");
         }
@@ -82,8 +86,30 @@ namespace Capstone_Project_598
                     MessageBox.Show("Sorry, that username is already taken. :/");
             }
             else
-                usernameXLabel.Visible = true;
-            
+            {
+                MessageBox.Show("Please enter a Password longer than 6 characters.");
+            }
+
+        }
+
+        private void TextBox21_TextChangedDelayed(object sender, EventArgs e)
+        {
+            string g = usernameTextBox.Text.Trim();
+
+            charactersXLabel.Visible = g.Length > 5 ? false : true;
+
+            var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
+            specialCharLab.Visible = regexItem.IsMatch(g) ? false : true;
+
+            if (g.Length > 5 && regexItem.IsMatch(g))
+                chooseUsernameButton.Enabled = true;
+        }
+
+        private void UsernameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            string tt = usernameTextBox.Text.Trim();
+            if (tt.Length < 1)
+                chooseUsernameButton.Enabled = false;
         }
     }
 }
