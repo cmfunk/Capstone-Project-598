@@ -194,6 +194,7 @@ namespace Capstone_Project_598
         private void UploadFileButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog OpenFD = new OpenFileDialog();
+            uploadFileButton.Visible = false;
             OpenFD.Title = "Locate image file.";
             OpenFD.Filter = "Jpg|*.jpg|Jpge|*.jpge|Jpeg|*.jpeg|PNG|*.png";
             OpenFD.FileName = null;
@@ -215,6 +216,7 @@ namespace Capstone_Project_598
 
                             ImageSegmentation = test;   //pictureBox1.Image = test;
                             //MessageBox.Show("## Image Set! ##");
+                            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
                             pictureBox1.Image = test;       pictureBox1.Visible = true;
 
                             //bigTextLabel.Text = "4) Please choose a pattern";
@@ -222,21 +224,96 @@ namespace Capstone_Project_598
                         }
                     }
                     catch (Exception ex)
-                    {   MessageBox.Show("Error" + ex.Message.ToString());   }
+                    {   MessageBox.Show("Error" + ex.Message.ToString());
+                        uploadFileButton.Visible = true;  }
                 }
                 else
-                { MessageBox.Show("Unable to locate file....", "#ERROR#"); }
-                
+                { MessageBox.Show("Unable to locate file....", "#ERROR#");
+                    uploadFileButton.Visible = true;  }
             }
+            else
+            { uploadFileButton.Visible = true; }
             OpenFD.Dispose();
         }
 
         private void SubmitPictureButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("## Image Set! ##");
+            MessageBox.Show("## Image Set! ##", "Success!");
             bigTextLabel.Text = "4) Please choose a pattern";
             submitPictureButton.Visible = false;        pictureBox1.Visible = false;
 
+            submitPatternButton.Visible = true;
+            redButton.Visible = true; greenButton.Visible = true;  blueButton.Visible = true;
+            yellowButton.Visible = true;            purpleButton.Visible = true;
+            patternLa.Visible = true;
+            minPatternLabel.Visible = true;         maxPatternLabel.Visible = true;
+        }
+
+        private void RedButton_Click(object sender, EventArgs e)
+        {
+            patternLa.Text += "R";
+
+            minPatternLabel.Visible = patternLa.Text.Length > 7 ? false : true;
+            if (patternLa.Text.Length == 16)
+                DisableButtons();
+
+            submitPatternButton.Enabled = patternLa.Text.Length > 7 ? true : false;
+        }
+
+        private void GreenButton_Click(object sender, EventArgs e)
+        {
+            patternLa.Text += "G";
+            minPatternLabel.Visible = patternLa.Text.Length > 7 ? false : true;
+            if (patternLa.Text.Length == 16)
+                DisableButtons();
+
+            submitPatternButton.Enabled = patternLa.Text.Length > 7 ? true : false;
+        }
+
+        private void BlueButton_Click(object sender, EventArgs e)
+        {
+            patternLa.Text += "B";
+            minPatternLabel.Visible = patternLa.Text.Length > 7 ? false : true;
+            if (patternLa.Text.Length == 16)
+                DisableButtons();
+
+            submitPatternButton.Enabled = patternLa.Text.Length > 7 ? true : false;
+        }
+
+        private void YellowButton_Click(object sender, EventArgs e)
+        {
+            patternLa.Text += "Y";
+            minPatternLabel.Visible = patternLa.Text.Length > 7 ? false : true;
+            if (patternLa.Text.Length == 16)
+                DisableButtons();
+
+            submitPatternButton.Enabled = patternLa.Text.Length > 7 ? true : false;
+        }
+
+        private void PurpleButton_Click(object sender, EventArgs e)
+        {
+            patternLa.Text += "P";
+            minPatternLabel.Visible = patternLa.Text.Length > 7 ? false : true;
+            if (patternLa.Text.Length == 16)
+                DisableButtons();
+
+            submitPatternButton.Enabled = patternLa.Text.Length > 7 ? true : false;
+        }
+
+        private void DisableButtons()
+        {
+            redButton.Enabled = false; greenButton.Enabled = false; blueButton.Enabled = false;
+            yellowButton.Enabled = false; purpleButton.Enabled = false;
+        }
+
+        private void SubmitPatternButton_Click(object sender, EventArgs e)
+        {
+            if (patternLa.Text.Length > 7)
+            {
+                MessageBox.Show("## Pattern Set! ##\n# User Successfully Created! #", "User Successfully Created!");
+                this.Close();
+            }
+            ///////WORK ON THIS TO CREATE ACCOUNT
         }
     }
 }

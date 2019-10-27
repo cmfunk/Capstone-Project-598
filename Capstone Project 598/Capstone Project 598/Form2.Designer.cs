@@ -38,6 +38,10 @@
             this.uxUserLabel = new System.Windows.Forms.Label();
             this.uxPassLabel = new System.Windows.Forms.Label();
             this.continueButton = new System.Windows.Forms.Button();
+            this.charsUsernameXLabel = new System.Windows.Forms.Label();
+            this.charsPasswordXLabel = new System.Windows.Forms.Label();
+            this.speccharPasswordXLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.TopPanel.SuspendLayout();
             this.leftTopPanel.SuspendLayout();
             this.SuspendLayout();
@@ -129,6 +133,8 @@
             this.usernameTextBox.Name = "usernameTextBox";
             this.usernameTextBox.Size = new System.Drawing.Size(145, 26);
             this.usernameTextBox.TabIndex = 16;
+            this.usernameTextBox.TextChangedDelayed += new System.EventHandler(this.UsernameTextBox_TextChangedDelayed);
+            this.usernameTextBox.TextChanged += new System.EventHandler(this.UsernameTextBox_TextChanged);
             // 
             // passwordTextBox
             // 
@@ -137,6 +143,8 @@
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.Size = new System.Drawing.Size(145, 26);
             this.passwordTextBox.TabIndex = 17;
+            this.passwordTextBox.TextChangedDelayed += new System.EventHandler(this.PasswordTextBox_TextChangedDelayed);
+            this.passwordTextBox.TextChanged += new System.EventHandler(this.PasswordTextBox_TextChanged);
             // 
             // uxUserLabel
             // 
@@ -167,16 +175,57 @@
             this.continueButton.TabIndex = 3;
             this.continueButton.Text = "Continue";
             this.continueButton.UseVisualStyleBackColor = true;
+            this.continueButton.Click += new System.EventHandler(this.ContinueButton_Click);
+            // 
+            // charsUsernameXLabel
+            // 
+            this.charsUsernameXLabel.AutoSize = true;
+            this.charsUsernameXLabel.Location = new System.Drawing.Point(22, 76);
+            this.charsUsernameXLabel.Name = "charsUsernameXLabel";
+            this.charsUsernameXLabel.Size = new System.Drawing.Size(154, 13);
+            this.charsUsernameXLabel.TabIndex = 20;
+            this.charsUsernameXLabel.Text = "## Username: 6 characters ##";
+            // 
+            // charsPasswordXLabel
+            // 
+            this.charsPasswordXLabel.AutoSize = true;
+            this.charsPasswordXLabel.Location = new System.Drawing.Point(22, 169);
+            this.charsPasswordXLabel.Name = "charsPasswordXLabel";
+            this.charsPasswordXLabel.Size = new System.Drawing.Size(166, 13);
+            this.charsPasswordXLabel.TabIndex = 21;
+            this.charsPasswordXLabel.Text = "### Password: 6 characters ###";
+            // 
+            // speccharPasswordXLabel
+            // 
+            this.speccharPasswordXLabel.AutoSize = true;
+            this.speccharPasswordXLabel.Location = new System.Drawing.Point(12, 183);
+            this.speccharPasswordXLabel.Name = "speccharPasswordXLabel";
+            this.speccharPasswordXLabel.Size = new System.Drawing.Size(183, 13);
+            this.speccharPasswordXLabel.TabIndex = 22;
+            this.speccharPasswordXLabel.Text = "## Password: 1 special character ##";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(28, 220);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(132, 13);
+            this.label2.TabIndex = 23;
+            this.label2.Text = "# Spaces will be omitted #";
             // 
             // LogonForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(359, 254);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.passwordTextBox);
+            this.Controls.Add(this.charsPasswordXLabel);
+            this.Controls.Add(this.speccharPasswordXLabel);
+            this.Controls.Add(this.charsUsernameXLabel);
             this.Controls.Add(this.continueButton);
             this.Controls.Add(this.uxPassLabel);
             this.Controls.Add(this.uxUserLabel);
-            this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.usernameTextBox);
             this.Controls.Add(this.leftTopPanel);
             this.Controls.Add(this.TopPanel);
@@ -203,5 +252,9 @@
         private System.Windows.Forms.Label uxUserLabel;
         private System.Windows.Forms.Label uxPassLabel;
         private System.Windows.Forms.Button continueButton;
+        private System.Windows.Forms.Label charsUsernameXLabel;
+        private System.Windows.Forms.Label charsPasswordXLabel;
+        private System.Windows.Forms.Label speccharPasswordXLabel;
+        private System.Windows.Forms.Label label2;
     }
 }

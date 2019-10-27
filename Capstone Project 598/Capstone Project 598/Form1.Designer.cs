@@ -40,11 +40,20 @@
             this.choosePasswordButton = new System.Windows.Forms.Button();
             this.submitPictureButton = new System.Windows.Forms.Button();
             this.uploadFileButton = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.usernameTextBox = new Capstone_Project_598.TextBox2();
             this.minButton = new Capstone_Project_598.ButtonZ();
             this.closeButton = new Capstone_Project_598.ButtonZ();
             this.passwordTextBox = new Capstone_Project_598.TextBox2();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.redButton = new System.Windows.Forms.Button();
+            this.greenButton = new System.Windows.Forms.Button();
+            this.blueButton = new System.Windows.Forms.Button();
+            this.yellowButton = new System.Windows.Forms.Button();
+            this.purpleButton = new System.Windows.Forms.Button();
+            this.submitPatternButton = new System.Windows.Forms.Button();
+            this.patternLa = new System.Windows.Forms.Label();
+            this.minPatternLabel = new System.Windows.Forms.Label();
+            this.maxPatternLabel = new System.Windows.Forms.Label();
             this.TopPanel.SuspendLayout();
             this.leftTopPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -168,7 +177,7 @@
             this.submitPictureButton.Name = "submitPictureButton";
             this.submitPictureButton.Size = new System.Drawing.Size(103, 33);
             this.submitPictureButton.TabIndex = 19;
-            this.submitPictureButton.Text = "spContinue";
+            this.submitPictureButton.Text = "Continue";
             this.submitPictureButton.UseVisualStyleBackColor = true;
             this.submitPictureButton.Click += new System.EventHandler(this.SubmitPictureButton_Click);
             // 
@@ -183,6 +192,14 @@
             this.uploadFileButton.UseVisualStyleBackColor = true;
             this.uploadFileButton.Visible = false;
             this.uploadFileButton.Click += new System.EventHandler(this.UploadFileButton_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(200, 90);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(143, 138);
+            this.pictureBox1.TabIndex = 21;
+            this.pictureBox1.TabStop = false;
             // 
             // usernameTextBox
             // 
@@ -246,19 +263,119 @@
             this.passwordTextBox.TextChangedDelayed += new System.EventHandler(this.PasswordTextBox_TextChangedDelayed);
             this.passwordTextBox.TextChanged += new System.EventHandler(this.PasswordTextBox_TextChanged);
             // 
-            // pictureBox1
+            // redButton
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(200, 90);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(143, 138);
-            this.pictureBox1.TabIndex = 21;
-            this.pictureBox1.TabStop = false;
+            this.redButton.BackColor = System.Drawing.Color.Red;
+            this.redButton.Location = new System.Drawing.Point(58, 90);
+            this.redButton.Name = "redButton";
+            this.redButton.Size = new System.Drawing.Size(50, 36);
+            this.redButton.TabIndex = 22;
+            this.redButton.UseVisualStyleBackColor = false;
+            this.redButton.Visible = false;
+            this.redButton.Click += new System.EventHandler(this.RedButton_Click);
+            // 
+            // greenButton
+            // 
+            this.greenButton.BackColor = System.Drawing.Color.Green;
+            this.greenButton.Location = new System.Drawing.Point(153, 90);
+            this.greenButton.Name = "greenButton";
+            this.greenButton.Size = new System.Drawing.Size(50, 36);
+            this.greenButton.TabIndex = 23;
+            this.greenButton.UseVisualStyleBackColor = false;
+            this.greenButton.Visible = false;
+            this.greenButton.Click += new System.EventHandler(this.GreenButton_Click);
+            // 
+            // blueButton
+            // 
+            this.blueButton.BackColor = System.Drawing.Color.Blue;
+            this.blueButton.Location = new System.Drawing.Point(239, 90);
+            this.blueButton.Name = "blueButton";
+            this.blueButton.Size = new System.Drawing.Size(50, 36);
+            this.blueButton.TabIndex = 24;
+            this.blueButton.UseVisualStyleBackColor = false;
+            this.blueButton.Visible = false;
+            this.blueButton.Click += new System.EventHandler(this.BlueButton_Click);
+            // 
+            // yellowButton
+            // 
+            this.yellowButton.BackColor = System.Drawing.Color.Yellow;
+            this.yellowButton.Location = new System.Drawing.Point(109, 133);
+            this.yellowButton.Name = "yellowButton";
+            this.yellowButton.Size = new System.Drawing.Size(50, 36);
+            this.yellowButton.TabIndex = 25;
+            this.yellowButton.UseVisualStyleBackColor = false;
+            this.yellowButton.Visible = false;
+            this.yellowButton.Click += new System.EventHandler(this.YellowButton_Click);
+            // 
+            // purpleButton
+            // 
+            this.purpleButton.BackColor = System.Drawing.Color.Fuchsia;
+            this.purpleButton.Location = new System.Drawing.Point(194, 131);
+            this.purpleButton.Name = "purpleButton";
+            this.purpleButton.Size = new System.Drawing.Size(50, 36);
+            this.purpleButton.TabIndex = 26;
+            this.purpleButton.UseVisualStyleBackColor = false;
+            this.purpleButton.Visible = false;
+            this.purpleButton.Click += new System.EventHandler(this.PurpleButton_Click);
+            // 
+            // submitPatternButton
+            // 
+            this.submitPatternButton.Enabled = false;
+            this.submitPatternButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.submitPatternButton.Location = new System.Drawing.Point(234, 202);
+            this.submitPatternButton.Name = "submitPatternButton";
+            this.submitPatternButton.Size = new System.Drawing.Size(103, 33);
+            this.submitPatternButton.TabIndex = 27;
+            this.submitPatternButton.Text = "Continue";
+            this.submitPatternButton.UseVisualStyleBackColor = true;
+            this.submitPatternButton.Visible = false;
+            this.submitPatternButton.Click += new System.EventHandler(this.SubmitPatternButton_Click);
+            // 
+            // patternLa
+            // 
+            this.patternLa.AutoSize = true;
+            this.patternLa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.patternLa.Location = new System.Drawing.Point(13, 202);
+            this.patternLa.Name = "patternLa";
+            this.patternLa.Size = new System.Drawing.Size(0, 20);
+            this.patternLa.TabIndex = 28;
+            this.patternLa.Visible = false;
+            // 
+            // minPatternLabel
+            // 
+            this.minPatternLabel.AutoSize = true;
+            this.minPatternLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.minPatternLabel.Location = new System.Drawing.Point(231, 173);
+            this.minPatternLabel.Name = "minPatternLabel";
+            this.minPatternLabel.Size = new System.Drawing.Size(108, 13);
+            this.minPatternLabel.TabIndex = 29;
+            this.minPatternLabel.Text = "# min: 8 characters #";
+            this.minPatternLabel.Visible = false;
+            // 
+            // maxPatternLabel
+            // 
+            this.maxPatternLabel.AutoSize = true;
+            this.maxPatternLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maxPatternLabel.Location = new System.Drawing.Point(230, 185);
+            this.maxPatternLabel.Name = "maxPatternLabel";
+            this.maxPatternLabel.Size = new System.Drawing.Size(117, 13);
+            this.maxPatternLabel.TabIndex = 30;
+            this.maxPatternLabel.Text = "# max: 16 characters #";
+            this.maxPatternLabel.Visible = false;
             // 
             // AddUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(359, 247);
+            this.Controls.Add(this.minPatternLabel);
+            this.Controls.Add(this.patternLa);
+            this.Controls.Add(this.submitPatternButton);
+            this.Controls.Add(this.purpleButton);
+            this.Controls.Add(this.yellowButton);
+            this.Controls.Add(this.blueButton);
+            this.Controls.Add(this.greenButton);
+            this.Controls.Add(this.redButton);
             this.Controls.Add(this.uploadFileButton);
             this.Controls.Add(this.specCharsLabel);
             this.Controls.Add(this.usernameTextBox);
@@ -273,6 +390,7 @@
             this.Controls.Add(this.chooseUsernameButton);
             this.Controls.Add(this.choosePasswordButton);
             this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.maxPatternLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddUserForm";
             this.Text = "Form1";
@@ -304,5 +422,14 @@
         private System.Windows.Forms.Button submitPictureButton;
         private System.Windows.Forms.Button uploadFileButton;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button redButton;
+        private System.Windows.Forms.Button greenButton;
+        private System.Windows.Forms.Button blueButton;
+        private System.Windows.Forms.Button yellowButton;
+        private System.Windows.Forms.Button purpleButton;
+        private System.Windows.Forms.Button submitPatternButton;
+        private System.Windows.Forms.Label patternLa;
+        private System.Windows.Forms.Label minPatternLabel;
+        private System.Windows.Forms.Label maxPatternLabel;
     }
 }
