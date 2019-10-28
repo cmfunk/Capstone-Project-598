@@ -1,0 +1,21 @@
+drop table if exists dbo.Account
+
+
+
+create table dbo.Account
+(
+	AccountID int not null identity(1,1) primary key,
+	Username nvarchar(16) not null unique,
+	Password nvarchar(64) not null,
+	Balance float not null,
+	ColorCode nvarchar(16) not null,
+	Image varbinary(MAX),
+	CreatedOn datetimeoffset not null default (sysdatetimeoffset())
+);
+
+
+insert dbo.Account(Username, Password, Balance, ColorCode)
+values(N'secondUser', N'fdssaw0rd', 605.23, N'GBYGBRYYP');
+
+
+select * from dbo.Account

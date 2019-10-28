@@ -311,6 +311,9 @@ namespace Capstone_Project_598
             if (patternLa.Text.Length > 7)
             {
                 MessageBox.Show("## Pattern Set! ##\n# User Successfully Created! #", "User Successfully Created!");
+
+
+
                 this.Close();
             }
             ///////WORK ON THIS TO CREATE ACCOUNT

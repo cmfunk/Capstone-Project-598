@@ -182,27 +182,27 @@
             this.charsUsernameXLabel.AutoSize = true;
             this.charsUsernameXLabel.Location = new System.Drawing.Point(22, 76);
             this.charsUsernameXLabel.Name = "charsUsernameXLabel";
-            this.charsUsernameXLabel.Size = new System.Drawing.Size(154, 13);
+            this.charsUsernameXLabel.Size = new System.Drawing.Size(100, 13);
             this.charsUsernameXLabel.TabIndex = 20;
-            this.charsUsernameXLabel.Text = "## Username: 6 characters ##";
+            this.charsUsernameXLabel.Text = "## 6 characters ##";
             // 
             // charsPasswordXLabel
             // 
             this.charsPasswordXLabel.AutoSize = true;
             this.charsPasswordXLabel.Location = new System.Drawing.Point(22, 169);
             this.charsPasswordXLabel.Name = "charsPasswordXLabel";
-            this.charsPasswordXLabel.Size = new System.Drawing.Size(166, 13);
+            this.charsPasswordXLabel.Size = new System.Drawing.Size(114, 13);
             this.charsPasswordXLabel.TabIndex = 21;
-            this.charsPasswordXLabel.Text = "### Password: 6 characters ###";
+            this.charsPasswordXLabel.Text = "### 6 characters ###";
             // 
             // speccharPasswordXLabel
             // 
             this.speccharPasswordXLabel.AutoSize = true;
             this.speccharPasswordXLabel.Location = new System.Drawing.Point(12, 183);
             this.speccharPasswordXLabel.Name = "speccharPasswordXLabel";
-            this.speccharPasswordXLabel.Size = new System.Drawing.Size(183, 13);
+            this.speccharPasswordXLabel.Size = new System.Drawing.Size(131, 13);
             this.speccharPasswordXLabel.TabIndex = 22;
-            this.speccharPasswordXLabel.Text = "## Password: 1 special character ##";
+            this.speccharPasswordXLabel.Text = "## 1 special character ##";
             // 
             // label2
             // 
