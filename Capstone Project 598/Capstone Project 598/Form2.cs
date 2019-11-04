@@ -79,6 +79,7 @@ namespace Capstone_Project_598
             {
                    //get all username and check if in   //bool userBool = 
 
+                    //sql connection
             }
             else
             {   MessageBox.Show("Error, username and password requirements NOT met.", "Sorry :/");  }

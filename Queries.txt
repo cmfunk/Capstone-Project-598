@@ -19,3 +19,7 @@ values(N'secondUser', N'fdssaw0rd', 605.23, N'GBYGBRYYP');
 
 
 select * from dbo.Account
+
+
+
+//need to find establishing tables in our big Ticket 560 project
