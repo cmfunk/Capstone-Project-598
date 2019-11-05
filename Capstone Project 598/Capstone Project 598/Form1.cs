@@ -152,6 +152,10 @@ namespace Capstone_Project_598
                 data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
                 string hash = System.Text.Encoding.ASCII.GetString(data);
 
+
+                //wrap connection in authentication encryption
+
+
                 Password = ree;
                 //MessageBox.Show("## Password is set! ##");
 
