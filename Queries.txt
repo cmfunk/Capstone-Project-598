@@ -1,25 +1,84 @@
-drop table if exists dbo.Account
+use cmfunk15;
 
+
+drop table if exists dbo.Account
+drop table if exists dbo.Customer
+drop table if exists dbo.ATMTransction
+drop table if exists dbo.ATM
+drop table if exists dbo.CheckingAccount
+drop table if exists dbo.SavingsAccount
 
 
 create table dbo.Account
 (
 	AccountID int not null identity(1,1) primary key,
-	Username nvarchar(16) not null unique,
-	Password nvarchar(64) not null,
+	Username nvarchar(32) not null,
+	Pass1Textphrase nvarchar(64) not null,
 	Balance float not null,
-	ColorCode nvarchar(16) not null,
-	Image varbinary(MAX),
+	Pass2Colorcode nvarchar(16) not null,
+	Pass3Image varbinary(MAX),
 	CreatedOn datetimeoffset not null default (sysdatetimeoffset())
+	unique(Username,Pass1Textphrase)
+);
+
+create table dbo.Customer
+(
+	CustomerID int not null identity(1,1) primary key,
+	AccountID int not null foreign key references dbo.Account(AccountID),
+	Name nvarchar(80) ,--not null,
+	Address nvarchar(100) ,--not null,
+	DOB datetimeoffset ,--not null,
+	CardNumber int ,--not null,
+	Pin int ,--not null
+	unique(Name, Address, DOB, CardNumber, Pin)
+);
+
+create table ATMTransaction
+(
+	ATMTransactionID int not null identity(1,1) primary key,
+	Date datetimeoffset ,--not null,
+	Type varchar(8) not null check (Type in('Savings ','Checking')),
+	Amount float not null,
+);
+
+create table ATM
+(
+	ATMID int not null identity(1,1) primary key,
+	ATMTransactionID int not null foreign key references dbo.ATMTransaction(ATMTransactionID),
+	Location nvarchar(100) --not null
+);
+
+create table CheckingAccount
+(
+	CATransactionID int not null primary key foreign key references dbo.ATMTransaction(ATMTransactionID),
+	AccountID int not null foreign key references dbo.Account(AccountID),
+	Ammount float not null
+);
+
+create table SavingsAccount
+(
+	SATransactionID int not null primary key foreign key references dbo.ATMTransaction(ATMTransactionID),
+	AccountID int not null foreign key references dbo.Account(AccountID),
+	Ammount float not null
 );
 
 
-insert dbo.Account(Username, Password, Balance, ColorCode)
-values(N'secondUser', N'fdssaw0rd', 605.23, N'GBYGBRYYP');
+
+
 
 
 select * from dbo.Account
+select * from dbo.Customer
+select * from dbo.ATMTransaction
+select * from dbo.ATM
+select * from dbo.CheckingAccount
+select * from dbo.SavingsAccount
 
 
 
-//need to find establishing tables in our big Ticket 560 project
+
+insert dbo.Account(Username, Pass1Textphrase, Balance, Pass2Colorcode)
+values(N'secondUser', N'fdssaw0rd', 605.23, N'GBYGBRYYP');
+
+insert dbo.Customer(AccountID, Name, Address, DOB, CardNumber, Pin)
+values (1, N'test', N'666testing', '20190927 03:34:00 +10:00', 65463456, 7786);

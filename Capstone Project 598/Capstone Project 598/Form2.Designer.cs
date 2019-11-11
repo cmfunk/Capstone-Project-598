@@ -38,9 +38,6 @@
             this.uxUserLabel = new System.Windows.Forms.Label();
             this.uxPassLabel = new System.Windows.Forms.Label();
             this.continueButton = new System.Windows.Forms.Button();
-            this.charsUsernameXLabel = new System.Windows.Forms.Label();
-            this.charsPasswordXLabel = new System.Windows.Forms.Label();
-            this.speccharPasswordXLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.TopPanel.SuspendLayout();
             this.leftTopPanel.SuspendLayout();
@@ -177,33 +174,6 @@
             this.continueButton.UseVisualStyleBackColor = true;
             this.continueButton.Click += new System.EventHandler(this.ContinueButton_Click);
             // 
-            // charsUsernameXLabel
-            // 
-            this.charsUsernameXLabel.AutoSize = true;
-            this.charsUsernameXLabel.Location = new System.Drawing.Point(22, 76);
-            this.charsUsernameXLabel.Name = "charsUsernameXLabel";
-            this.charsUsernameXLabel.Size = new System.Drawing.Size(100, 13);
-            this.charsUsernameXLabel.TabIndex = 20;
-            this.charsUsernameXLabel.Text = "## 6 characters ##";
-            // 
-            // charsPasswordXLabel
-            // 
-            this.charsPasswordXLabel.AutoSize = true;
-            this.charsPasswordXLabel.Location = new System.Drawing.Point(22, 169);
-            this.charsPasswordXLabel.Name = "charsPasswordXLabel";
-            this.charsPasswordXLabel.Size = new System.Drawing.Size(114, 13);
-            this.charsPasswordXLabel.TabIndex = 21;
-            this.charsPasswordXLabel.Text = "### 6 characters ###";
-            // 
-            // speccharPasswordXLabel
-            // 
-            this.speccharPasswordXLabel.AutoSize = true;
-            this.speccharPasswordXLabel.Location = new System.Drawing.Point(12, 183);
-            this.speccharPasswordXLabel.Name = "speccharPasswordXLabel";
-            this.speccharPasswordXLabel.Size = new System.Drawing.Size(131, 13);
-            this.speccharPasswordXLabel.TabIndex = 22;
-            this.speccharPasswordXLabel.Text = "## 1 special character ##";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -220,9 +190,6 @@
             this.ClientSize = new System.Drawing.Size(359, 254);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.passwordTextBox);
-            this.Controls.Add(this.charsPasswordXLabel);
-            this.Controls.Add(this.speccharPasswordXLabel);
-            this.Controls.Add(this.charsUsernameXLabel);
             this.Controls.Add(this.continueButton);
             this.Controls.Add(this.uxPassLabel);
             this.Controls.Add(this.uxUserLabel);
@@ -252,9 +219,6 @@
         private System.Windows.Forms.Label uxUserLabel;
         private System.Windows.Forms.Label uxPassLabel;
         private System.Windows.Forms.Button continueButton;
-        private System.Windows.Forms.Label charsUsernameXLabel;
-        private System.Windows.Forms.Label charsPasswordXLabel;
-        private System.Windows.Forms.Label speccharPasswordXLabel;
         private System.Windows.Forms.Label label2;
     }
 }

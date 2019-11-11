@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,14 @@ namespace Capstone_Project_598
     {
         private UserInterface ownerForm = null;
         private List<string> UsernameDictionary = new List<string>();
+
+        //SqlConnection connection = new SqlConnection("Data Source=mssql.cs.ksu.edu;Initial Catalog=cmfunk15;Integrated Security=True;Encrypt=False");
+        public const string _connStr = "Data Source=mssql.cs.ksu.edu;Initial Catalog=cmfunk15;Integrated Security=false;Encrypt=False";
+        private SqlConnection _con = new SqlConnection(_connStr);
+        private SqlCommand _cmd = new SqlCommand();
+        private SqlDataReader _reader;
+        //<add name="SQLServerConnection" connectionString="Server=localhost;Database=database1;Trusted_Connection=True;/>
+
         //private int State;
 
         private string Username;
@@ -146,7 +155,7 @@ namespace Capstone_Project_598
             string ree = passwordTextBox.Text.Trim();
             var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
 
-            if (ree.Length > 5 && !regexItem.IsMatch(ree))
+            if (ree.Length > 7 && !regexItem.IsMatch(ree))
             {
                 byte[] data = System.Text.Encoding.ASCII.GetBytes(ree);
                 data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
@@ -185,12 +194,12 @@ namespace Capstone_Project_598
             string tt = passwordTextBox.Text.Trim();
             var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
 
-            if (tt.Length < 6 || regexItem.IsMatch(tt))
+            if (tt.Length < 8 || regexItem.IsMatch(tt))
                 choosePasswordButton.Enabled = false;
             else
                 choosePasswordButton.Enabled = true;
             
-            charactersXLabel.Visible = tt.Length < 6 ? true : false;
+            charactersXLabel.Visible = tt.Length < 8 ? true : false;
 
             specCharsLabel.Visible = regexItem.IsMatch(tt) ? true : false;
         }
@@ -200,7 +209,7 @@ namespace Capstone_Project_598
             OpenFileDialog OpenFD = new OpenFileDialog();
             uploadFileButton.Visible = false;
             OpenFD.Title = "Locate image file.";
-            OpenFD.Filter = "Jpg|*.jpg|Jpge|*.jpge|Jpeg|*.jpeg|PNG|*.png";
+            OpenFD.Filter = "Jpeg|*.jpeg|Jpg|*.jpg|Jpge|*.jpge|PNG|*.png";
             OpenFD.FileName = null;
             string fileName;            Image test = null;
             if (OpenFD.ShowDialog() == DialogResult.OK)
@@ -242,7 +251,7 @@ namespace Capstone_Project_598
 
         private void SubmitPictureButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("## Image Set! ##", "Success!");
+            //MessageBox.Show("## Image Set! ##", "Success!");
             bigTextLabel.Text = "4) Please choose a pattern";
             submitPictureButton.Visible = false;        pictureBox1.Visible = false;
 
@@ -314,6 +323,38 @@ namespace Capstone_Project_598
         {
             if (patternLa.Text.Length > 7)
             {
+                _cmd.Parameters.Clear();
+                _con.Open();
+                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                _cmd.CommandText = "dbo.AddAccount";
+                _cmd.Connection = _con;
+
+                _cmd.Parameters.AddWithValue(Username, "@UserName");
+                _cmd.Parameters.AddWithValue(Password, "@Pass1Textphrase");
+                _cmd.Parameters.AddWithValue("708.54", "@Balance");
+                _cmd.Parameters.AddWithValue(patternLa.Text, "@Pass2ColorCode");
+                _cmd.Parameters.AddWithValue(ImageSegmentation.ToString(), "@Pass3Image");
+                _cmd.Parameters.AddWithValue("1", "@AccountID");
+                _cmd.Parameters.AddWithValue("random name", "@Name");
+                _cmd.Parameters.AddWithValue("5432 wavy road", "@Address");
+                _cmd.Parameters.AddWithValue("20191123 03:34:00 +10:00", "@DOB");
+                _cmd.Parameters.AddWithValue("43657865", "@CardNumber");
+                _cmd.Parameters.AddWithValue("5356", "@Pin");
+                _cmd.ExecuteNonQuery();
+                _con.Close();
+                /*@UserName nvarchar(32),
+	                @Pass1Textphrase nvarchar(64),
+	            @Balance float,
+                @Pass2Colorcode nvarchar(16),
+	            @Pass3Image varbinary(MAX),
+	            @AccountID int,
+                @Name nvarchar(80),
+	            @Address nvarchar(100),
+	            @DOB datetimeoffset,
+                @CardNumber int,
+                @Pin int*/
+
+
                 MessageBox.Show("## Pattern Set! ##\n# User Successfully Created! #", "User Successfully Created!");
 
 

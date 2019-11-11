@@ -99,7 +99,7 @@ namespace Capstone_Project_598
                 ifneeded22 = dee.Replace(" ", "");
 
             usernameLenBool = ifneeded22.Length > 5 ? true : false;
-            charsUsernameXLabel.Visible = ifneeded22.Length > 5 ? false : true;
+            //charsUsernameXLabel.Visible = ifneeded22.Length > 5 ? false : true;
 
             if (usernameLenBool && passwordLenBool)
                 continueButton.Enabled = true;
@@ -129,8 +129,8 @@ namespace Capstone_Project_598
             if (ee.Contains(" "))
                 temppp = ee.Replace(" ", "");
 
-            charsPasswordXLabel.Visible = temppp.Length > 5 ? false : true;
-            speccharPasswordXLabel.Visible = regexItem.IsMatch(ee) ? true : false;
+            //charsPasswordXLabel.Visible = temppp.Length > 5 ? false : true;
+            //speccharPasswordXLabel.Visible = regexItem.IsMatch(ee) ? true : false;
 
             if (temppp.Length > 5 && !regexItem.IsMatch(ee))
             {
