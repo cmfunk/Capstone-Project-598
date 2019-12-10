@@ -33,18 +33,30 @@ namespace Capstone_Project_598
 
         bool isTopPanelDragged = false;
         private Point offset;
+        Dictionary<int, Image> imageDictionary;
+        List<PictureBox> pictureBoxes;
+        List<CheckBox> checkBoxes;
+        List<Button> coloredButtons;
+
 
         public AddUserForm(UserInterface ownerForm)
         {
             InitializeComponent();
             this.ownerForm = ownerForm;
             charactersXLabel.Visible = true;    specCharsLabel.Visible = false;
-            chooseUsernameButton.Enabled = false;       uploadFileButton.Visible = false;
-            submitPictureButton.Visible = false;        submitPictureButton.Enabled = true;
-            pictureBox1.Visible = false;
+            chooseUsernameButton.Enabled = false;       imageSubmitButton.Visible = false;
             //State = 0;
-
             UsernameDictionary.Add("cmfunk"); UsernameDictionary.Add("root");
+
+            imageDictionary = new Dictionary<int, Image>();
+            checkBoxes = new List<CheckBox>(); pictureBoxes = new List<PictureBox>();   coloredButtons = new List<Button>();
+            initStuff();
+
+            foreach (PictureBox ee in pictureBoxes)
+                ee.Visible = false;
+            foreach (CheckBox rr in checkBoxes)
+                rr.Visible = false;
+
         }
 
         private void MinButton_Click(object sender, EventArgs e)
@@ -105,7 +117,7 @@ namespace Capstone_Project_598
                 }
                 else //if (unique)
                 {
-                    MessageBox.Show("### Username is available ###");//create user in SQL Database 
+                    //MessageBox.Show("### Username is available ###");//create user in SQL Database 
                     Username = g;
                     //State = 1;
                     usernameTextBox.Visible = false;
@@ -168,12 +180,37 @@ namespace Capstone_Project_598
                 Password = ree;
                 //MessageBox.Show("## Password is set! ##");
 
-                bigTextLabel.Text = "3) Please upload a picture";
+                bigTextLabel.Text = "3) Please choose a picture";
                 choosePasswordButton.Visible = false; chooseUsernameButton.Visible = false;
                 passwordTextBox.Visible = false;            
                 label5.Visible = false;         //"spaces will be omitted"
 
-                uploadFileButton.Visible = true;        label1.Visible = false;
+                label1.Visible = false;
+                var random = new Random();
+
+                int picbox1 = random.Next(12)+1;
+                int picbox2 = random.Next(12)+1;
+                while (picbox2 == picbox1)
+                    picbox2 = random.Next(12)+1;
+                int picbox3 = random.Next(12)+1;
+                while (picbox3 == picbox1 || picbox3 == picbox2)
+                    picbox3 = random.Next(12)+1;
+                int picbox4 = random.Next(12)+1;
+                while (picbox4 == picbox1 || picbox4 == picbox2 || picbox4 == picbox3)
+                    picbox4 = random.Next(12)+1;
+
+                pictureBox1.Image = imageDictionary[picbox1];
+                pictureBox2.Image = imageDictionary[picbox2];
+                pictureBox3.Image = imageDictionary[picbox3];
+                pictureBox4.Image = imageDictionary[picbox4];
+
+                imageSubmitButton.Enabled = false;
+                imageSubmitButton.Visible = true;
+
+                foreach (PictureBox yy in pictureBoxes)
+                    yy.Visible = true;
+                foreach (CheckBox xx in checkBoxes)
+                    xx.Visible = true;
             }
         }
 
@@ -204,63 +241,6 @@ namespace Capstone_Project_598
             specCharsLabel.Visible = regexItem.IsMatch(tt) ? true : false;
         }
 
-        private void UploadFileButton_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog OpenFD = new OpenFileDialog();
-            uploadFileButton.Visible = false;
-            OpenFD.Title = "Locate image file.";
-            OpenFD.Filter = "Jpeg|*.jpeg|Jpg|*.jpg|Jpge|*.jpge|PNG|*.png";
-            OpenFD.FileName = null;
-            string fileName;            Image test = null;
-            if (OpenFD.ShowDialog() == DialogResult.OK)
-            {
-                //querybuilder qu = new querybuilder();
-                fileName = OpenFD.FileName;
-                Object refmissing = System.Reflection.Missing.Value;
-
-                if (File.Exists(fileName))
-                {
-                    try
-                    {
-                        test = Image.FromFile(OpenFD.FileName);
-                        if (test != null)
-                        {
-                            uploadFileButton.Visible = false;
-
-                            ImageSegmentation = test;   //pictureBox1.Image = test;
-                            //MessageBox.Show("## Image Set! ##");
-                            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-                            pictureBox1.Image = test;       pictureBox1.Visible = true;
-
-                            //bigTextLabel.Text = "4) Please choose a pattern";
-                            submitPictureButton.Visible = true;    submitPictureButton.Enabled = true;
-                        }
-                    }
-                    catch (Exception ex)
-                    {   MessageBox.Show("Error" + ex.Message.ToString());
-                        uploadFileButton.Visible = true;  }
-                }
-                else
-                { MessageBox.Show("Unable to locate file....", "#ERROR#");
-                    uploadFileButton.Visible = true;  }
-            }
-            else
-            { uploadFileButton.Visible = true; }
-            OpenFD.Dispose();
-        }
-
-        private void SubmitPictureButton_Click(object sender, EventArgs e)
-        {
-            //MessageBox.Show("## Image Set! ##", "Success!");
-            bigTextLabel.Text = "4) Please choose a pattern";
-            submitPictureButton.Visible = false;        pictureBox1.Visible = false;
-
-            submitPatternButton.Visible = true;
-            redButton.Visible = true; greenButton.Visible = true;  blueButton.Visible = true;
-            yellowButton.Visible = true;            purpleButton.Visible = true;
-            patternLa.Visible = true;
-            minPatternLabel.Visible = true;         maxPatternLabel.Visible = true;
-        }
 
         private void RedButton_Click(object sender, EventArgs e)
         {
@@ -319,6 +299,36 @@ namespace Capstone_Project_598
             yellowButton.Enabled = false; purpleButton.Enabled = false;
         }
 
+
+        private void initStuff()
+        {
+            int i = 1;
+            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._1); i++;
+            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._2); i++;
+            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._3); i++;
+            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._4); i++;
+            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._5); i++;
+            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._6); i++;
+            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._7); i++;
+            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._8); i++;
+            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._9); i++;
+            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._10); i++;
+            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._11); i++;
+            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._12); i++;
+
+            pictureBoxes.Add(pictureBox1);      pictureBoxes.Add(pictureBox2);
+            pictureBoxes.Add(pictureBox3);      pictureBoxes.Add(pictureBox4);
+            checkBoxes.Add(checkBox1);          checkBoxes.Add(checkBox2);
+            checkBoxes.Add(checkBox3);          checkBoxes.Add(checkBox4);
+            coloredButtons.Add(redButton); coloredButtons.Add(greenButton); coloredButtons.Add(blueButton);
+            coloredButtons.Add(yellowButton); coloredButtons.Add(purpleButton);
+
+        }
+
+
+
+
+
         private void SubmitPatternButton_Click(object sender, EventArgs e)
         {
             if (patternLa.Text.Length > 7)
@@ -362,6 +372,48 @@ namespace Capstone_Project_598
                 this.Close();
             }
             ///////WORK ON THIS TO CREATE ACCOUNT
+        }
+
+        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            checkBox2.Checked = false; checkBox3.Checked = false; checkBox4.Checked = false;
+            imageSubmitButton.Enabled = checkBox1.Checked ? true : false;
+        }
+
+        private void CheckBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            checkBox1.Checked = false;  checkBox3.Checked = false; checkBox4.Checked = false;
+            imageSubmitButton.Enabled = checkBox2.Checked ? true : false;
+        }
+
+        private void CheckBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            checkBox1.Checked = false; checkBox2.Checked = false; checkBox4.Checked = false;
+            imageSubmitButton.Enabled = checkBox3.Checked ? true : false;
+        }
+
+        private void CheckBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            checkBox1.Checked = false; checkBox3.Checked = false; checkBox2.Checked = false;
+            imageSubmitButton.Enabled = checkBox4.Checked ? true : false;
+        }
+
+        private void ImageSubmitButton_Click(object sender, EventArgs e)
+        {
+            bigTextLabel.Text = "4) Please choose a pattern";
+            imageSubmitButton.Visible = false;
+            foreach (PictureBox ee in pictureBoxes)
+                ee.Visible = false;
+            foreach (CheckBox rr in checkBoxes)
+                rr.Visible = false;
+
+            submitPatternButton.Visible = true;
+            foreach (Button bb in coloredButtons)
+                bb.Visible = true;
+
+            patternLa.Visible = true;
+            minPatternLabel.Visible = true;         maxPatternLabel.Visible = true;
+
         }
     }
 }
