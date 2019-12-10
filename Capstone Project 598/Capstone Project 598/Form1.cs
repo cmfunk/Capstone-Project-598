@@ -16,11 +16,12 @@ namespace Capstone_Project_598
     public partial class AddUserForm : Form
     {
         private UserInterface ownerForm = null;
+        private LogonForm logonForm = null;
         private List<string> UsernameDictionary = new List<string>();
 
         //SqlConnection connection = new SqlConnection("Data Source=mssql.cs.ksu.edu;Initial Catalog=cmfunk15;Integrated Security=True;Encrypt=False");
-        public const string _connStr = "Data Source=mssql.cs.ksu.edu;Initial Catalog=cmfunk15;Integrated Security=false;Encrypt=False";
-        private SqlConnection _con = new SqlConnection(_connStr);
+        //Capstone_Project_598.Properties.Settings.Default.cmfunk15ConnectionString
+        private SqlConnection _con = new SqlConnection(Capstone_Project_598.Properties.Settings.Default.cmfunk15ConnectionString);
         private SqlCommand _cmd = new SqlCommand();
         private SqlDataReader _reader;
         //<add name="SQLServerConnection" connectionString="Server=localhost;Database=database1;Trusted_Connection=True;/>
@@ -29,6 +30,7 @@ namespace Capstone_Project_598
 
         private string Username;
         private string Password;
+        private string ImageforSegmentation;
         private Image ImageSegmentation;
 
         bool isTopPanelDragged = false;
@@ -177,7 +179,7 @@ namespace Capstone_Project_598
                 //wrap connection in authentication encryption
 
 
-                Password = ree;
+                Password = hash;
                 //MessageBox.Show("## Password is set! ##");
 
                 bigTextLabel.Text = "3) Please choose a picture";
@@ -300,30 +302,6 @@ namespace Capstone_Project_598
         }
 
 
-        private void initStuff()
-        {
-            int i = 1;
-            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._1); i++;
-            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._2); i++;
-            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._3); i++;
-            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._4); i++;
-            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._5); i++;
-            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._6); i++;
-            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._7); i++;
-            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._8); i++;
-            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._9); i++;
-            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._10); i++;
-            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._11); i++;
-            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._12); i++;
-
-            pictureBoxes.Add(pictureBox1);      pictureBoxes.Add(pictureBox2);
-            pictureBoxes.Add(pictureBox3);      pictureBoxes.Add(pictureBox4);
-            checkBoxes.Add(checkBox1);          checkBoxes.Add(checkBox2);
-            checkBoxes.Add(checkBox3);          checkBoxes.Add(checkBox4);
-            coloredButtons.Add(redButton); coloredButtons.Add(greenButton); coloredButtons.Add(blueButton);
-            coloredButtons.Add(yellowButton); coloredButtons.Add(purpleButton);
-
-        }
 
 
 
@@ -331,48 +309,73 @@ namespace Capstone_Project_598
 
         private void SubmitPatternButton_Click(object sender, EventArgs e)
         {
+            
             if (patternLa.Text.Length > 7)
             {
+                //colorcode
+                byte[] data = System.Text.Encoding.ASCII.GetBytes(patternLa.Text);
+                data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
+                string colorCode = System.Text.Encoding.ASCII.GetString(data);
+
+                //image
+                byte[] dataaa = System.Text.Encoding.ASCII.GetBytes(ImageforSegmentation);
+                dataaa = new System.Security.Cryptography.SHA256Managed().ComputeHash(dataaa);
+                string ImageHash = System.Text.Encoding.ASCII.GetString(dataaa);
+
+
                 _cmd.Parameters.Clear();
+
                 _con.Open();
-                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                _cmd.CommandType = CommandType.StoredProcedure;
                 _cmd.CommandText = "dbo.AddAccount";
                 _cmd.Connection = _con;
 
-                _cmd.Parameters.AddWithValue(Username, "@UserName");
-                _cmd.Parameters.AddWithValue(Password, "@Pass1Textphrase");
-                _cmd.Parameters.AddWithValue("708.54", "@Balance");
-                _cmd.Parameters.AddWithValue(patternLa.Text, "@Pass2ColorCode");
-                _cmd.Parameters.AddWithValue(ImageSegmentation.ToString(), "@Pass3Image");
-                _cmd.Parameters.AddWithValue("1", "@AccountID");
-                _cmd.Parameters.AddWithValue("random name", "@Name");
-                _cmd.Parameters.AddWithValue("5432 wavy road", "@Address");
-                _cmd.Parameters.AddWithValue("20191123 03:34:00 +10:00", "@DOB");
-                _cmd.Parameters.AddWithValue("43657865", "@CardNumber");
-                _cmd.Parameters.AddWithValue("5356", "@Pin");
+                _cmd.Parameters.AddWithValue("@UserName", Username);
+                _cmd.Parameters.AddWithValue("@Pass1Textphrase", Password);
+                _cmd.Parameters.AddWithValue("@Pass2Colorcode", colorCode);
+                _cmd.Parameters.AddWithValue("@Pass3Image", ImageHash);
                 _cmd.ExecuteNonQuery();
                 _con.Close();
-                /*@UserName nvarchar(32),
-	                @Pass1Textphrase nvarchar(64),
-	            @Balance float,
-                @Pass2Colorcode nvarchar(16),
-	            @Pass3Image varbinary(MAX),
-	            @AccountID int,
-                @Name nvarchar(80),
-	            @Address nvarchar(100),
-	            @DOB datetimeoffset,
-                @CardNumber int,
-                @Pin int*/
 
 
                 MessageBox.Show("## Pattern Set! ##\n# User Successfully Created! #", "User Successfully Created!");
 
+                if (Application.OpenForms.OfType<LogonForm>().Count() == 0)
+                {
+                    logonForm = new LogonForm(ownerForm);
+                    logonForm.Show();
+                }
+                else if (Application.OpenForms.OfType<LogonForm>().Count() == 1)
+                    Application.OpenForms.OfType<LogonForm>().First().BringToFront();
+                else //if (Application.OpenForms.OfType<LogonForm>().Count() > 1)
+                {
+                    FormCollection fc = Application.OpenForms;
+                    foreach (Form frm in fc)
+                    {
+                        if (frm.GetType() == logonForm.GetType())
+                            frm.Close();
+                    }
+                    logonForm = new LogonForm(ownerForm);
+                    logonForm.Show();
+                }
 
 
                 this.Close();
             }
             ///////WORK ON THIS TO CREATE ACCOUNT
         }
+
+        private SqlParameter convertToSqlParam(string str, string sqlVar)
+        {
+            SqlParameter temp = new SqlParameter();
+            temp.ParameterName = sqlVar;
+            temp.SqlDbType = System.Data.SqlDbType.NVarChar;
+            temp.Direction = System.Data.ParameterDirection.Input;
+            temp.Value = str;
+            return temp;
+        }
+
+
 
         private void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -400,6 +403,16 @@ namespace Capstone_Project_598
 
         private void ImageSubmitButton_Click(object sender, EventArgs e)
         {
+            if (checkBox1.Checked)
+                ImageforSegmentation = "one1";
+            else if (checkBox2.Checked)
+                ImageforSegmentation = "two2";
+            else if (checkBox3.Checked)
+                ImageforSegmentation = "three3";
+            else if (checkBox4.Checked)
+                ImageforSegmentation = "four4";
+
+
             bigTextLabel.Text = "4) Please choose a pattern";
             imageSubmitButton.Visible = false;
             foreach (PictureBox ee in pictureBoxes)
@@ -413,6 +426,40 @@ namespace Capstone_Project_598
 
             patternLa.Visible = true;
             minPatternLabel.Visible = true;         maxPatternLabel.Visible = true;
+
+        }
+
+
+
+
+
+
+
+
+
+
+        private void initStuff()
+        {
+            int i = 1;
+            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._1); i++;
+            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._2); i++;
+            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._3); i++;
+            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._4); i++;
+            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._5); i++;
+            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._6); i++;
+            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._7); i++;
+            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._8); i++;
+            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._9); i++;
+            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._10); i++;
+            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._11); i++;
+            imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._12); i++;
+
+            pictureBoxes.Add(pictureBox1); pictureBoxes.Add(pictureBox2);
+            pictureBoxes.Add(pictureBox3); pictureBoxes.Add(pictureBox4);
+            checkBoxes.Add(checkBox1); checkBoxes.Add(checkBox2);
+            checkBoxes.Add(checkBox3); checkBoxes.Add(checkBox4);
+            coloredButtons.Add(redButton); coloredButtons.Add(greenButton); coloredButtons.Add(blueButton);
+            coloredButtons.Add(yellowButton); coloredButtons.Add(purpleButton);
 
         }
     }

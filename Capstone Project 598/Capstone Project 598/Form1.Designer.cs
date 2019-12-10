@@ -299,7 +299,7 @@
             // 
             this.patternLa.AutoSize = true;
             this.patternLa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.patternLa.Location = new System.Drawing.Point(13, 202);
+            this.patternLa.Location = new System.Drawing.Point(21, 234);
             this.patternLa.Name = "patternLa";
             this.patternLa.Size = new System.Drawing.Size(0, 20);
             this.patternLa.TabIndex = 28;

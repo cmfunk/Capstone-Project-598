@@ -70,16 +70,15 @@ namespace Capstone_Project_598
             string user = usernameTextBox.Text;     user = user.Trim();     string tempUser = user;
             if (user.Contains(" "))
                 tempUser = user.Replace(" ", "");
-
             string pass = passwordTextBox.Text;     pass = pass.Trim();     string tempPass = pass;
             if (pass.Contains(" "))
                 tempPass = pass.Replace(" ", "");
             
             if (tempUser.Length > 5 && tempPass.Length > 5 && !regexItem.IsMatch(tempPass))
             {
-                   //get all username and check if in   //bool userBool = 
+                   
 
-                    //sql connection
+
             }
             else
             {   MessageBox.Show("Error, username and password requirements NOT met.", "Sorry :/");  }
