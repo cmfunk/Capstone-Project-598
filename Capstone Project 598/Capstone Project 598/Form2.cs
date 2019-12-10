@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,14 +18,22 @@ namespace Capstone_Project_598
         bool isTopPanelDragged = false;
         private Point offset;
 
+        private string UserName;
+
+        private Dictionary<int, Image> imageDictionary;
+
         bool usernameLenBool = false;
         bool passwordLenBool = false;
 
-        public LogonForm(UserInterface ownerForm)
+        public LogonForm(UserInterface ownerForm, Dictionary<int, Image> images)
         {
             InitializeComponent();
+            imageDictionary = new Dictionary<int, Image>();
+            imageDictionary = images;
             this.ownerForm = ownerForm;
             continueButton.Enabled = false;
+
+            initLists();
         }
 
         private void MinButton_Click(object sender, EventArgs e)
@@ -73,15 +82,77 @@ namespace Capstone_Project_598
             string pass = passwordTextBox.Text;     pass = pass.Trim();     string tempPass = pass;
             if (pass.Contains(" "))
                 tempPass = pass.Replace(" ", "");
-            
+
+            string comparePass;         string realImageHash;
             if (tempUser.Length > 5 && tempPass.Length > 5 && !regexItem.IsMatch(tempPass))
             {
-                   
+
+                using (SqlConnection _con = new SqlConnection(Capstone_Project_598.Properties.Settings.Default.cmfunk15ConnectionString))
+                {
+                    string oString = "select * from dbo.Account where Username = N'" + tempUser + "'";
+                    SqlCommand ocmd = new SqlCommand(oString, _con);
+                    ocmd.Parameters.Clear();
+                    ocmd.Parameters.AddWithValue("@UserName", tempUser);
+                    _con.Open();
+                    using (SqlDataReader oReader = ocmd.ExecuteReader())
+                    {
+                        while (oReader.Read())
+                        {
+                            byte[] data = System.Text.Encoding.ASCII.GetBytes(tempPass);
+                            data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
+                            string hashedtempPass = System.Text.Encoding.ASCII.GetString(data);
+
+
+                            comparePass = oReader["Pass1Textphrase"].ToString();
+
+
+                            if (comparePass == hashedtempPass)
+                            {
+                                UserName = tempUser;
+                                MessageBox.Show("Moving onto stage 2...");
+                                bigTextLabel.Text = "2) Please choose correct image.";
+                                uxUserLabel.Visible = false; uxPassLabel.Visible = false;
+                                passwordTextBox.Visible = false; usernameTextBox.Visible = false;
+                                label1.Visible = false; continueButton.Visible = false;
+                                label2.Visible = false;
+
+                                realImageHash = oReader["Pass3Image"].ToString();
+
+                                int compareInt = 0; string compareImage = "z";
+                                byte[] test1;       string hashedCompareImage = "reee";
+                                while(hashedCompareImage != realImageHash)
+                                {
+                                    compareInt++;
+                                    compareImage = compareInt.ToString() + compareInt.ToString() + compareInt.ToString() + compareInt.ToString();
+                                    test1 = System.Text.Encoding.ASCII.GetBytes(compareImage);
+                                    test1 = new System.Security.Cryptography.SHA256Managed().ComputeHash(test1);
+                                    hashedCompareImage = System.Text.Encoding.ASCII.GetString(test1); 
+                                }
+
+                                Image realImage = imageDictionary[compareInt];
+                                ///set to a random picture box to ensure we're showing correct one, and three random and go from there
+
+
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Incorrect Username / Password combination");
+                                usernameTextBox.Text = "";          passwordTextBox.Text = "";
+                            }
+
+                        }
+
+                    }
+                }
+
+                
+
 
 
             }
             else
-            {   MessageBox.Show("Error, username and password requirements NOT met.", "Sorry :/");  }
+            {   MessageBox.Show("Invalid necessary information.");  }
 
 
         }
@@ -160,5 +231,24 @@ namespace Capstone_Project_598
                 passwordTextBox.Text += tmpp;
             }
         }
+
+        private void initLists()
+        {
+            List<PictureBox> pictureBoxes = new List<PictureBox>();
+            List<CheckBox> checkBoxes = new List<CheckBox>();
+
+            pictureBoxes.Add(pictureBox1); pictureBoxes.Add(pictureBox2);
+            pictureBoxes.Add(pictureBox3); pictureBoxes.Add(pictureBox4);
+            checkBoxes.Add(checkBox1); checkBoxes.Add(checkBox2);
+            checkBoxes.Add(checkBox3); checkBoxes.Add(checkBox4);
+
+            foreach (CheckBox i in checkBoxes)
+                i.Visible = false;
+            foreach (PictureBox j in pictureBoxes)
+                j.Visible = false;
+
+        }
+
+
     }
 }

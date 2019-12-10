@@ -39,8 +39,22 @@
             this.uxPassLabel = new System.Windows.Forms.Label();
             this.continueButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.bigTextLabel = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.TopPanel.SuspendLayout();
             this.leftTopPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // TopPanel
@@ -52,7 +66,7 @@
             this.TopPanel.Controls.Add(this.closeButton);
             this.TopPanel.Location = new System.Drawing.Point(207, 0);
             this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Size = new System.Drawing.Size(153, 50);
+            this.TopPanel.Size = new System.Drawing.Size(207, 50);
             this.TopPanel.TabIndex = 7;
             this.TopPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseDown);
             this.TopPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseMove);
@@ -65,7 +79,7 @@
             this.minButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.minButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.minButton.ForeColor = System.Drawing.Color.Black;
-            this.minButton.Location = new System.Drawing.Point(93, 3);
+            this.minButton.Location = new System.Drawing.Point(144, 3);
             this.minButton.MouseClickColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(140)))), ((int)(((byte)(60)))));
             this.minButton.MouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(180)))), ((int)(((byte)(80)))));
             this.minButton.Name = "minButton";
@@ -85,7 +99,7 @@
             this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closeButton.ForeColor = System.Drawing.Color.Black;
-            this.closeButton.Location = new System.Drawing.Point(119, 4);
+            this.closeButton.Location = new System.Drawing.Point(173, 4);
             this.closeButton.MouseClickColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.closeButton.MouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(20)))), ((int)(((byte)(40)))));
             this.closeButton.Name = "closeButton";
@@ -126,7 +140,7 @@
             // usernameTextBox
             // 
             this.usernameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usernameTextBox.Location = new System.Drawing.Point(146, 92);
+            this.usernameTextBox.Location = new System.Drawing.Point(146, 101);
             this.usernameTextBox.Name = "usernameTextBox";
             this.usernameTextBox.Size = new System.Drawing.Size(145, 26);
             this.usernameTextBox.TabIndex = 16;
@@ -136,7 +150,7 @@
             // passwordTextBox
             // 
             this.passwordTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordTextBox.Location = new System.Drawing.Point(146, 141);
+            this.passwordTextBox.Location = new System.Drawing.Point(146, 150);
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.Size = new System.Drawing.Size(145, 26);
             this.passwordTextBox.TabIndex = 17;
@@ -147,7 +161,7 @@
             // 
             this.uxUserLabel.AutoSize = true;
             this.uxUserLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxUserLabel.Location = new System.Drawing.Point(21, 95);
+            this.uxUserLabel.Location = new System.Drawing.Point(21, 104);
             this.uxUserLabel.Name = "uxUserLabel";
             this.uxUserLabel.Size = new System.Drawing.Size(106, 20);
             this.uxUserLabel.TabIndex = 18;
@@ -157,7 +171,7 @@
             // 
             this.uxPassLabel.AutoSize = true;
             this.uxPassLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxPassLabel.Location = new System.Drawing.Point(21, 144);
+            this.uxPassLabel.Location = new System.Drawing.Point(21, 153);
             this.uxPassLabel.Name = "uxPassLabel";
             this.uxPassLabel.Size = new System.Drawing.Size(101, 20);
             this.uxPassLabel.TabIndex = 19;
@@ -166,7 +180,7 @@
             // continueButton
             // 
             this.continueButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.continueButton.Location = new System.Drawing.Point(237, 197);
+            this.continueButton.Location = new System.Drawing.Point(290, 256);
             this.continueButton.Name = "continueButton";
             this.continueButton.Size = new System.Drawing.Size(100, 36);
             this.continueButton.TabIndex = 3;
@@ -177,31 +191,140 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(28, 220);
+            this.label2.Location = new System.Drawing.Point(269, 192);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(132, 13);
             this.label2.TabIndex = 23;
             this.label2.Text = "# Spaces will be omitted #";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 240);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 52);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "** All 3 steps\r\nare required\r\nfor successful\r\nlogin process**";
+            // 
+            // bigTextLabel
+            // 
+            this.bigTextLabel.AutoSize = true;
+            this.bigTextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bigTextLabel.Location = new System.Drawing.Point(12, 63);
+            this.bigTextLabel.Name = "bigTextLabel";
+            this.bigTextLabel.Size = new System.Drawing.Size(395, 24);
+            this.bigTextLabel.TabIndex = 25;
+            this.bigTextLabel.Text = "1) Please enter Username and Password.";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(56, 101);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 26;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(250, 101);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 27;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Location = new System.Drawing.Point(56, 207);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 28;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Location = new System.Drawing.Point(250, 207);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 29;
+            this.pictureBox4.TabStop = false;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(41, 156);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(80, 17);
+            this.checkBox1.TabIndex = 30;
+            this.checkBox1.Text = "checkBox1";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(234, 157);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(80, 17);
+            this.checkBox2.TabIndex = 31;
+            this.checkBox2.Text = "checkBox2";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(41, 268);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(80, 17);
+            this.checkBox3.TabIndex = 32;
+            this.checkBox3.Text = "checkBox3";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(234, 268);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(80, 17);
+            this.checkBox4.TabIndex = 33;
+            this.checkBox4.Text = "checkBox4";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
             // LogonForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(359, 254);
+            this.ClientSize = new System.Drawing.Size(413, 319);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.checkBox4);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.checkBox3);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.checkBox2);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.bigTextLabel);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.continueButton);
-            this.Controls.Add(this.uxPassLabel);
             this.Controls.Add(this.uxUserLabel);
             this.Controls.Add(this.usernameTextBox);
             this.Controls.Add(this.leftTopPanel);
             this.Controls.Add(this.TopPanel);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.uxPassLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "LogonForm";
             this.Text = "Form2";
             this.TopPanel.ResumeLayout(false);
             this.leftTopPanel.ResumeLayout(false);
             this.leftTopPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,5 +343,15 @@
         private System.Windows.Forms.Label uxPassLabel;
         private System.Windows.Forms.Button continueButton;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label bigTextLabel;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox checkBox4;
     }
 }

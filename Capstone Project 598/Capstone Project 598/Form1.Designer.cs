@@ -90,7 +90,7 @@
             this.minButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.minButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.minButton.ForeColor = System.Drawing.Color.Black;
-            this.minButton.Location = new System.Drawing.Point(125, 3);
+            this.minButton.Location = new System.Drawing.Point(191, 3);
             this.minButton.MouseClickColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(140)))), ((int)(((byte)(60)))));
             this.minButton.MouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(180)))), ((int)(((byte)(80)))));
             this.minButton.Name = "minButton";

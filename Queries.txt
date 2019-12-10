@@ -1,3 +1,5 @@
+
+
 use cmfunk15;
 
 
@@ -14,9 +16,9 @@ create table dbo.Account
 	AccountID int not null identity(1,1) primary key,
 	Username nvarchar(32) not null,
 	Pass1Textphrase nvarchar(64) not null,
-	Balance float not null,
-	Pass2Colorcode nvarchar(16) not null,
-	Pass3Image varbinary(MAX),
+	Balance float,
+	Pass2Colorcode nvarchar(64) not null,
+	Pass3Image nvarchar(64) not null,
 	CreatedOn datetimeoffset not null default (sysdatetimeoffset())
 	unique(Username,Pass1Textphrase)
 );
@@ -33,13 +35,13 @@ create table dbo.Customer
 	unique(Name, Address, DOB, CardNumber, Pin)
 );
 
-create table ATMTransaction
-(
-	ATMTransactionID int not null identity(1,1) primary key,
-	Date datetimeoffset ,--not null,
-	Type varchar(8) not null check (Type in('Savings ','Checking')),
-	Amount float not null,
-);
+--create table ATMTransaction
+--(
+--	ATMTransactionID int not null identity(1,1) primary key,
+--	Date datetimeoffset ,--not null,
+--	Type varchar(8) not null check (Type in('Savings ','Checking')),
+--	Amount float not null,
+--);
 
 create table ATM
 (
@@ -82,3 +84,66 @@ values(N'secondUser', N'fdssaw0rd', 605.23, N'GBYGBRYYP');
 
 insert dbo.Customer(AccountID, Name, Address, DOB, CardNumber, Pin)
 values (1, N'test', N'666testing', '20190927 03:34:00 +10:00', 65463456, 7786);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+######stored procedures########
+USE [cmfunk15]
+GO
+/****** Object:  StoredProcedure [dbo].[AddAccount]    Script Date: 12/10/2019 2:34:33 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER procedure [dbo].[AddAccount]
+	@UserName nvarchar(32),
+	@Pass1Textphrase nvarchar(64),
+	@Pass2Colorcode nvarchar(16),
+	@Pass3Image nvarchar(64)
+as
+begin
+	--set NOCOUNT on,
+	insert dbo.Account (UserName, Pass1TextPhrase, Pass2Colorcode, Pass3Image)
+	values (@UserName, @Pass1Textphrase, @Pass2Colorcode, @Pass3Image);
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
