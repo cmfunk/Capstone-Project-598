@@ -17,7 +17,7 @@ namespace Capstone_Project_598
     {
         private UserInterface ownerForm = null;
         private LogonForm logonForm = null;
-        private List<string> UsernameDictionary = new List<string>();
+        private List<string> UsernameDictionary;
 
         private SqlConnection _con = new SqlConnection(Capstone_Project_598.Properties.Settings.Default.cmfunk15ConnectionString);
         private SqlCommand _cmd = new SqlCommand();
@@ -39,11 +39,11 @@ namespace Capstone_Project_598
         public AddUserForm(UserInterface ownerForm, Dictionary<int, Image> images)
         {
             InitializeComponent();              imageDictionary = images;
+            UsernameDictionary = new List<string>();
             this.ownerForm = ownerForm;
             charactersXLabel.Visible = true;    specCharsLabel.Visible = false;
             chooseUsernameButton.Enabled = false;       imageSubmitButton.Visible = false;
             //State = 0;
-            UsernameDictionary.Add("cmfunk"); UsernameDictionary.Add("root");
             possibleValues = new int[4];
             checkBoxes = new List<CheckBox>(); pictureBoxes = new List<PictureBox>();   coloredButtons = new List<Button>();
             initStuff();
@@ -97,11 +97,23 @@ namespace Capstone_Project_598
             string g = usernameTextBox.Text.Trim();
             bool unique = true;
 
-            var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
-
             if (g.Length > 5)
             {
-                foreach(string tmp in UsernameDictionary)
+                using (SqlConnection _con = new SqlConnection(Capstone_Project_598.Properties.Settings.Default.cmfunk15ConnectionString))
+                {
+                    string oString = "select Username from dbo.Account";
+                    SqlCommand ocmd = new SqlCommand(oString, _con);
+                    ocmd.Parameters.Clear();
+                    _con.Open();
+                    UsernameDictionary.Clear();
+                    using (SqlDataReader reader = ocmd.ExecuteReader())
+                    {
+                        while(reader.Read())
+                        { UsernameDictionary.Add(reader.GetString(0)); }
+                    }
+                }
+
+                foreach (string tmp in UsernameDictionary)
                 {
                     if (g == tmp)
                         unique = false;
@@ -164,12 +176,7 @@ namespace Capstone_Project_598
 
             if (ree.Length > 7 && !regexItem.IsMatch(ree))
             {
-                byte[] data = System.Text.Encoding.ASCII.GetBytes(ree);
-                data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
-                string hash = System.Text.Encoding.ASCII.GetString(data);
-
-                Password = hash;
-                //MessageBox.Show("## Password is set! ##");
+                Password = encryptString(ree);
 
                 bigTextLabel.Text = "3) Please choose a picture";
                 choosePasswordButton.Visible = false; chooseUsernameButton.Visible = false;
@@ -179,16 +186,16 @@ namespace Capstone_Project_598
                 label1.Visible = false;
                 var random = new Random();
 
-                int picbox1 = random.Next(12)+1;
-                int picbox2 = random.Next(12)+1;
+                int picbox1 = random.Next(12);
+                int picbox2 = random.Next(12);
                 while (picbox2 == picbox1)
-                    picbox2 = random.Next(12)+1;
-                int picbox3 = random.Next(12)+1;
+                    picbox2 = random.Next(12);
+                int picbox3 = random.Next(12);
                 while (picbox3 == picbox1 || picbox3 == picbox2)
-                    picbox3 = random.Next(12)+1;
-                int picbox4 = random.Next(12)+1;
+                    picbox3 = random.Next(12);
+                int picbox4 = random.Next(12);
                 while (picbox4 == picbox1 || picbox4 == picbox2 || picbox4 == picbox3)
-                    picbox4 = random.Next(12)+1;
+                    picbox4 = random.Next(12);
 
                 possibleValues[0] = picbox1;  possibleValues[1] = picbox2;
                 possibleValues[2] = picbox3;  possibleValues[3] = picbox4;
@@ -298,16 +305,9 @@ namespace Capstone_Project_598
             
             if (patternLa.Text.Length > 7)
             {
-                //colorcode
-                byte[] data = System.Text.Encoding.ASCII.GetBytes(patternLa.Text);
-                data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
-                string colorCode = System.Text.Encoding.ASCII.GetString(data);
+                string colorCode = encryptString(patternLa.Text);
 
-                //image
-                byte[] dataaa = System.Text.Encoding.ASCII.GetBytes(ImageforSegmentation);
-                dataaa = new System.Security.Cryptography.SHA256Managed().ComputeHash(dataaa);
-                string ImageHash = System.Text.Encoding.ASCII.GetString(dataaa);
-
+                string ImageHash = encryptString(ImageforSegmentation);
 
                 _cmd.Parameters.Clear();
 
@@ -322,7 +322,6 @@ namespace Capstone_Project_598
                 _cmd.Parameters.AddWithValue("@Pass3Image", ImageHash/*ImageforSegmentation*/);
                 _cmd.ExecuteNonQuery();
                 _con.Close();
-
 
                 MessageBox.Show("## Pattern Set! ##\n# User Successfully Created! #", "User Successfully Created!");
 
@@ -410,6 +409,21 @@ namespace Capstone_Project_598
 
         }
 
+
+        private string encryptString(string a)
+        {
+            byte[] data;
+
+            string Hash = a;
+            for(int i = 0; i < 1000; i++)
+            {
+                data = System.Text.Encoding.ASCII.GetBytes(Hash);
+                data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
+                Hash = System.Text.Encoding.ASCII.GetString(data);
+            }
+
+            return Hash;
+        }
 
         private void initStuff()
         {

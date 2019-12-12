@@ -20,8 +20,14 @@ namespace Capstone_Project_598
 
         List<PictureBox> pictureBoxes;
         List<CheckBox> checkBoxes;
+        List<Button> coloredButtons;
+
+        Random rand;
 
         private string UserName;
+        private string Password;
+        private string imageCode;
+        private string colorCode;
 
         private Dictionary<int, Image> imageDictionary;
 
@@ -32,7 +38,7 @@ namespace Capstone_Project_598
         {
             InitializeComponent();
             imageDictionary = new Dictionary<int, Image>();
-            imageDictionary = images;
+            imageDictionary = images;       rand = new Random();
             this.ownerForm = ownerForm;
             continueButton.Enabled = false;
 
@@ -86,10 +92,10 @@ namespace Capstone_Project_598
             if (pass.Contains(" "))
                 tempPass = pass.Replace(" ", "");
 
-            string comparePass;         string realImageHash;
+            UserName = tempUser;                Password = tempPass;    
+            string comparePass;         string realImageHash;       bool isUsernameinDB = false;
             if (tempUser.Length > 5 && tempPass.Length > 5 && !regexItem.IsMatch(tempPass))
             {
-
                 using (SqlConnection _con = new SqlConnection(Capstone_Project_598.Properties.Settings.Default.cmfunk15ConnectionString))
                 {
                     string oString = "select * from dbo.Account where Username = N'" + tempUser + "'";
@@ -99,94 +105,78 @@ namespace Capstone_Project_598
                     _con.Open();
                     using (SqlDataReader oReader = ocmd.ExecuteReader())
                     {
-                        while (oReader.Read())
+                        while (oReader.Read())                                          ////////if not correct username, Will not read
                         {
-                            byte[] data = System.Text.Encoding.ASCII.GetBytes(tempPass);
-                            data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
-                            string hashedtempPass = System.Text.Encoding.ASCII.GetString(data);
+                            isUsernameinDB = true;
+                            string hashedtempPass = encryptString(tempPass);
 
+                            comparePass = oReader["Pass1Textphrase"].ToString();            
 
-                            comparePass = oReader["Pass1Textphrase"].ToString();
-
-
-                            if (comparePass == hashedtempPass)
+                            if (comparePass == hashedtempPass)                                              
                             {
                                 UserName = tempUser;
-                                MessageBox.Show("Moving onto stage 2...");
                                 bigTextLabel.Text = "2) Please choose your correct image.";
                                 uxUserLabel.Visible = false; uxPassLabel.Visible = false;
                                 passwordTextBox.Visible = false; usernameTextBox.Visible = false;
                                 label1.Visible = false; continueButton.Visible = false;
                                 label2.Visible = false;
 
-                                realImageHash = oReader["Pass3Image"].ToString();
+                                realImageHash = oReader["Pass3Image"].ToString();               //hashed image
 
-                                int compareInt = 0; string compareImage = "z";
-                                byte[] test1;       string hashedCompareImage = "reee";
-                                while(hashedCompareImage != realImageHash && compareInt < 13)
+                                int i = -1;     string compareHash = "";
+
+                                while(compareHash != realImageHash )
                                 {
-                                    compareInt++;
-                                    compareImage = compareInt.ToString() + compareInt.ToString() + compareInt.ToString() + compareInt.ToString();
-                                    test1 = System.Text.Encoding.ASCII.GetBytes(compareImage);
-                                    test1 = new System.Security.Cryptography.SHA256Managed().ComputeHash(test1);
-                                    hashedCompareImage = System.Text.Encoding.ASCII.GetString(test1); 
+                                    i++;
+                                    compareHash = i.ToString() + i.ToString() + i.ToString() + i.ToString();
+                                    compareHash = encryptString(compareHash);
                                 }
 
-                                Image realImage = imageDictionary[compareInt];
-                                ///set to a random picture box to ensure we're showing correct one, and three random and go from there
+                                imageCode = i.ToString() + i.ToString() + i.ToString() + i.ToString();
+                                Image realImage = imageDictionary[i];              //i is correct 0-11 int index of real image
 
-                                Random rand = new Random();
-                                int i = rand.Next(4);               //0-3
+                                int j = rand.Next(4);
 
-                                pictureBoxes[i].Image = realImage;
-                                int [] indexforImages  = new int[4];
+                                pictureBoxes[j].Image = realImage;
 
-                                compareInt--;
-                                indexforImages[1] = rand.Next(12);       //0-11
-                                while (indexforImages[1] == compareInt)
-                                    indexforImages[1] = rand.Next(12);
-                                indexforImages[2] = rand.Next(12);
-                                while (indexforImages[2] == indexforImages[1] || indexforImages[2] == compareInt)
-                                    indexforImages[2] = rand.Next(12);
-                                indexforImages[3] = rand.Next(12);
-                                while (indexforImages[3] == indexforImages[2] || indexforImages[3] == indexforImages[1] || indexforImages[3] == compareInt)
-                                    indexforImages[3] = rand.Next(12);
+                                int[] index = new int[4];                   //j is index of 0-3 of pictureBoxes, i is index 0-11 of true image
 
-                                for(int jj = 0; jj < 4; jj++)
+                                index[0] = rand.Next(12);   
+                                while (index[0] == i)
+                                    index[0] = rand.Next(12);
+                                index[1] = rand.Next(12);
+                                while (index[1] == index[0] || index[1] == i)
+                                    index[1] = rand.Next(12);
+                                index[2] = rand.Next(12);
+                                while (index[2] == index[1] || index[2] == index[0] || index[2] == i)
+                                    index[2] = rand.Next(12);
+                                index[3] = rand.Next(12);
+                                while (index[3] == index[1] || index[3] == index[2] || index[3] == index[1] || index[3] == i)
+                                    index[3] = rand.Next(12);
+
+                                for(int k = 0; k < 4; k++)
                                 {
-                                    if (jj != i)
-                                        pictureBoxes[jj].Image = imageDictionary[indexforImages[jj] + 1];
+                                    if (k != j)
+                                        pictureBoxes[k].Image = imageDictionary[index[k]];
                                 }
 
-
-
-                                                    /////REWORK
-
-
-
-
+                                imageSubmitButton.Visible = true;       imageSubmitButton.Enabled = false;
                                 foreach (PictureBox yy in pictureBoxes)
                                     yy.Visible = true;
                                 foreach (CheckBox xxx in checkBoxes)
                                     xxx.Visible = true;
 
 
-
                             }
                             else
-                            {
-                                MessageBox.Show("Incorrect Username / Password combination");
-                                usernameTextBox.Text = "";          passwordTextBox.Text = "";
-                            }
-
+                            { alternatePath(tempUser); }
                         }
-
+                        if (!isUsernameinDB)
+                        { alternatePath(tempUser); }
                     }
                 }
-
                 
-
-
+                
 
             }
             else
@@ -194,6 +184,42 @@ namespace Capstone_Project_598
 
 
         }
+
+        private void alternatePath (string tempUser)
+        {
+            UserName = tempUser;
+            bigTextLabel.Text = "2) Please choose your correct image.";
+            uxUserLabel.Visible = false; uxPassLabel.Visible = false;
+            passwordTextBox.Visible = false; usernameTextBox.Visible = false;
+            label1.Visible = false; continueButton.Visible = false;
+            label2.Visible = false;
+
+            int[] index = new int[4];                   //all random
+
+            index[0] = rand.Next(12);
+            index[1] = rand.Next(12);
+            while (index[1] == index[0])
+                index[1] = rand.Next(12);
+            index[2] = rand.Next(12);
+            while (index[2] == index[1] || index[2] == index[0])
+                index[2] = rand.Next(12);
+            index[3] = rand.Next(12);
+            while (index[3] == index[1] || index[3] == index[2] || index[3] == index[1])
+                index[3] = rand.Next(12);
+
+            for (int k = 0; k < 4; k++)
+            {
+                pictureBoxes[k].Image = imageDictionary[index[k]];
+            }
+
+            imageSubmitButton.Visible = true; imageSubmitButton.Enabled = false;
+            foreach (PictureBox yy in pictureBoxes)
+                yy.Visible = true;
+            foreach (CheckBox xxx in checkBoxes)
+                xxx.Visible = true;
+        }
+
+
 
         private void UsernameTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -270,16 +296,38 @@ namespace Capstone_Project_598
             }
         }
 
+        private string encryptString(string a)
+        {
+            byte[] data;
+
+            string Hash = a;
+            for (int i = 0; i < 1000; i++)
+            {
+                data = System.Text.Encoding.ASCII.GetBytes(Hash);
+                data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
+                Hash = System.Text.Encoding.ASCII.GetString(data);
+            }
+
+            return Hash;
+        }
+
         private void initLists()
         {
+            submitPatternButton.Visible = false;
+            imageSubmitButton.Visible = false;
             pictureBoxes = new List<PictureBox>();
             checkBoxes = new List<CheckBox>();
+            coloredButtons = new List<Button>();
 
+            coloredButtons.Add(redButton); coloredButtons.Add(greenButton); coloredButtons.Add(blueButton);
+            coloredButtons.Add(yellowButton);           coloredButtons.Add(purpleButton);
             pictureBoxes.Add(pictureBox1); pictureBoxes.Add(pictureBox2);
             pictureBoxes.Add(pictureBox3); pictureBoxes.Add(pictureBox4);
             checkBoxes.Add(checkBox1); checkBoxes.Add(checkBox2);
             checkBoxes.Add(checkBox3); checkBoxes.Add(checkBox4);
 
+            foreach (Button bb in coloredButtons)
+                bb.Visible = false;
             foreach (CheckBox i in checkBoxes)
                 i.Visible = false;
             foreach (PictureBox j in pictureBoxes)
@@ -287,6 +335,66 @@ namespace Capstone_Project_598
 
         }
 
+        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            checkBox2.Checked = false; checkBox3.Checked = false; checkBox4.Checked = false;
+            imageSubmitButton.Enabled = checkBox1.Checked ? true : false;
+        }
 
+        private void CheckBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            checkBox1.Checked = false; checkBox3.Checked = false; checkBox4.Checked = false;
+            imageSubmitButton.Enabled = checkBox2.Checked ? true : false;
+        }
+
+        private void CheckBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            checkBox1.Checked = false; checkBox2.Checked = false; checkBox4.Checked = false;
+            imageSubmitButton.Enabled = checkBox3.Checked ? true : false;
+        }
+
+        private void CheckBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            checkBox1.Checked = false; checkBox3.Checked = false; checkBox2.Checked = false;
+            imageSubmitButton.Enabled = checkBox4.Checked ? true : false;
+        }
+
+        private void ImageSubmitButton_Click(object sender, EventArgs e)
+        {   
+            //if (checkBox1.Checked)                                            CHECKING IF CORRECT IMAGE ://////////////////    FOR TRUE OR FALSE
+
+            bigTextLabel.Text = "4) Please choose a pattern";
+            imageSubmitButton.Visible = false;
+            foreach (PictureBox x in pictureBoxes)
+                x.Visible = false;
+            foreach (CheckBox y in checkBoxes)
+                y.Visible = false;
+
+
+
+
+            /*if (checkBox1.Checked)
+                ImageforSegmentation = possibleValues[0].ToString() + possibleValues[0].ToString() + possibleValues[0].ToString() + possibleValues[0].ToString();
+            else if (checkBox2.Checked)
+                ImageforSegmentation = possibleValues[1].ToString() + possibleValues[1].ToString() + possibleValues[1].ToString() + possibleValues[1].ToString();
+            else if (checkBox3.Checked)
+                ImageforSegmentation = possibleValues[2].ToString() + possibleValues[2].ToString() + possibleValues[2].ToString() + possibleValues[2].ToString();
+            else if (checkBox4.Checked)
+                ImageforSegmentation = possibleValues[3].ToString() + possibleValues[3].ToString() + possibleValues[3].ToString() + possibleValues[3].ToString();
+
+            bigTextLabel.Text = "4) Please choose a pattern";
+            imageSubmitButton.Visible = false;
+            foreach (PictureBox ee in pictureBoxes)
+                ee.Visible = false;
+            foreach (CheckBox rr in checkBoxes)
+                rr.Visible = false;
+
+            submitPatternButton.Visible = true;
+            foreach (Button bb in coloredButtons)
+                bb.Visible = true;
+
+            patternLa.Visible = true;
+            minPatternLabel.Visible = true;         maxPatternLabel.Visible = true;*/
+        }
     }
 }

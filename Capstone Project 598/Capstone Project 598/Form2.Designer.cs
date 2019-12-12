@@ -49,6 +49,14 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.imageSubmitButton = new System.Windows.Forms.Button();
+            this.submitPatternButton = new System.Windows.Forms.Button();
+            this.patternLa = new System.Windows.Forms.Label();
+            this.greenButton = new System.Windows.Forms.Button();
+            this.purpleButton = new System.Windows.Forms.Button();
+            this.blueButton = new System.Windows.Forms.Button();
+            this.redButton = new System.Windows.Forms.Button();
+            this.yellowButton = new System.Windows.Forms.Button();
             this.TopPanel.SuspendLayout();
             this.leftTopPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -261,6 +269,7 @@
             this.checkBox1.TabIndex = 30;
             this.checkBox1.Text = "checkBox1";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
             // 
             // checkBox2
             // 
@@ -271,6 +280,7 @@
             this.checkBox2.TabIndex = 31;
             this.checkBox2.Text = "checkBox2";
             this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
             // 
             // checkBox3
             // 
@@ -281,6 +291,7 @@
             this.checkBox3.TabIndex = 32;
             this.checkBox3.Text = "checkBox3";
             this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.CheckBox3_CheckedChanged);
             // 
             // checkBox4
             // 
@@ -291,12 +302,105 @@
             this.checkBox4.TabIndex = 33;
             this.checkBox4.Text = "checkBox4";
             this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.CheckBox4_CheckedChanged);
+            // 
+            // imageSubmitButton
+            // 
+            this.imageSubmitButton.Enabled = false;
+            this.imageSubmitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.imageSubmitButton.Location = new System.Drawing.Point(365, 273);
+            this.imageSubmitButton.Name = "imageSubmitButton";
+            this.imageSubmitButton.Size = new System.Drawing.Size(39, 34);
+            this.imageSubmitButton.TabIndex = 39;
+            this.imageSubmitButton.Text = "√";
+            this.imageSubmitButton.UseVisualStyleBackColor = true;
+            this.imageSubmitButton.Visible = false;
+            this.imageSubmitButton.Click += new System.EventHandler(this.ImageSubmitButton_Click);
+            // 
+            // submitPatternButton
+            // 
+            this.submitPatternButton.Enabled = false;
+            this.submitPatternButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.submitPatternButton.Location = new System.Drawing.Point(298, 259);
+            this.submitPatternButton.Name = "submitPatternButton";
+            this.submitPatternButton.Size = new System.Drawing.Size(103, 33);
+            this.submitPatternButton.TabIndex = 40;
+            this.submitPatternButton.Text = "Continue";
+            this.submitPatternButton.UseVisualStyleBackColor = true;
+            this.submitPatternButton.Visible = false;
+            // 
+            // patternLa
+            // 
+            this.patternLa.AutoSize = true;
+            this.patternLa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.patternLa.Location = new System.Drawing.Point(22, 256);
+            this.patternLa.Name = "patternLa";
+            this.patternLa.Size = new System.Drawing.Size(0, 20);
+            this.patternLa.TabIndex = 41;
+            // 
+            // greenButton
+            // 
+            this.greenButton.BackColor = System.Drawing.Color.Green;
+            this.greenButton.Location = new System.Drawing.Point(177, 123);
+            this.greenButton.Name = "greenButton";
+            this.greenButton.Size = new System.Drawing.Size(50, 36);
+            this.greenButton.TabIndex = 42;
+            this.greenButton.UseVisualStyleBackColor = false;
+            this.greenButton.Visible = false;
+            // 
+            // purpleButton
+            // 
+            this.purpleButton.BackColor = System.Drawing.Color.Fuchsia;
+            this.purpleButton.Location = new System.Drawing.Point(223, 180);
+            this.purpleButton.Name = "purpleButton";
+            this.purpleButton.Size = new System.Drawing.Size(50, 36);
+            this.purpleButton.TabIndex = 43;
+            this.purpleButton.UseVisualStyleBackColor = false;
+            this.purpleButton.Visible = false;
+            // 
+            // blueButton
+            // 
+            this.blueButton.BackColor = System.Drawing.Color.Blue;
+            this.blueButton.Location = new System.Drawing.Point(272, 123);
+            this.blueButton.Name = "blueButton";
+            this.blueButton.Size = new System.Drawing.Size(50, 36);
+            this.blueButton.TabIndex = 44;
+            this.blueButton.UseVisualStyleBackColor = false;
+            this.blueButton.Visible = false;
+            // 
+            // redButton
+            // 
+            this.redButton.BackColor = System.Drawing.Color.Red;
+            this.redButton.Location = new System.Drawing.Point(77, 123);
+            this.redButton.Name = "redButton";
+            this.redButton.Size = new System.Drawing.Size(50, 36);
+            this.redButton.TabIndex = 45;
+            this.redButton.UseVisualStyleBackColor = false;
+            this.redButton.Visible = false;
+            // 
+            // yellowButton
+            // 
+            this.yellowButton.BackColor = System.Drawing.Color.Yellow;
+            this.yellowButton.Location = new System.Drawing.Point(122, 180);
+            this.yellowButton.Name = "yellowButton";
+            this.yellowButton.Size = new System.Drawing.Size(50, 36);
+            this.yellowButton.TabIndex = 46;
+            this.yellowButton.UseVisualStyleBackColor = false;
+            this.yellowButton.Visible = false;
             // 
             // LogonForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(413, 319);
+            this.Controls.Add(this.yellowButton);
+            this.Controls.Add(this.redButton);
+            this.Controls.Add(this.blueButton);
+            this.Controls.Add(this.purpleButton);
+            this.Controls.Add(this.greenButton);
+            this.Controls.Add(this.patternLa);
+            this.Controls.Add(this.submitPatternButton);
+            this.Controls.Add(this.imageSubmitButton);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.pictureBox3);
@@ -353,5 +457,13 @@
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.Button imageSubmitButton;
+        private System.Windows.Forms.Button submitPatternButton;
+        private System.Windows.Forms.Label patternLa;
+        private System.Windows.Forms.Button greenButton;
+        private System.Windows.Forms.Button purpleButton;
+        private System.Windows.Forms.Button blueButton;
+        private System.Windows.Forms.Button redButton;
+        private System.Windows.Forms.Button yellowButton;
     }
 }

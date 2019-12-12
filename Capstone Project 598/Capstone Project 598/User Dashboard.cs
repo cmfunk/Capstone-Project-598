@@ -117,7 +117,7 @@ namespace Capstone_Project_598
 
         private void initDictionary ()
         {
-            int i = 1; imageDictionary = new Dictionary<int, Image>();
+            int i = 0; imageDictionary = new Dictionary<int, Image>();
 
             imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._1); i++;
             imageDictionary.Add(i, Capstone_Project_598.Properties.Resources._2); i++;
