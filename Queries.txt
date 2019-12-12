@@ -67,7 +67,8 @@ create table SavingsAccount
 
 
 
-
+select * from dbo.Account 
+where Username = N'cmfunk15'
 
 select * from dbo.Account
 select * from dbo.Customer
@@ -84,6 +85,15 @@ values(N'secondUser', N'fdssaw0rd', 605.23, N'GBYGBRYYP');
 
 insert dbo.Customer(AccountID, Name, Address, DOB, CardNumber, Pin)
 values (1, N'test', N'666testing', '20190927 03:34:00 +10:00', 65463456, 7786);
+
+
+
+
+
+
+
+
+
 
 
 

@@ -18,6 +18,9 @@ namespace Capstone_Project_598
         bool isTopPanelDragged = false;
         private Point offset;
 
+        List<PictureBox> pictureBoxes;
+        List<CheckBox> checkBoxes;
+
         private string UserName;
 
         private Dictionary<int, Image> imageDictionary;
@@ -110,7 +113,7 @@ namespace Capstone_Project_598
                             {
                                 UserName = tempUser;
                                 MessageBox.Show("Moving onto stage 2...");
-                                bigTextLabel.Text = "2) Please choose correct image.";
+                                bigTextLabel.Text = "2) Please choose your correct image.";
                                 uxUserLabel.Visible = false; uxPassLabel.Visible = false;
                                 passwordTextBox.Visible = false; usernameTextBox.Visible = false;
                                 label1.Visible = false; continueButton.Visible = false;
@@ -120,7 +123,7 @@ namespace Capstone_Project_598
 
                                 int compareInt = 0; string compareImage = "z";
                                 byte[] test1;       string hashedCompareImage = "reee";
-                                while(hashedCompareImage != realImageHash)
+                                while(hashedCompareImage != realImageHash && compareInt < 13)
                                 {
                                     compareInt++;
                                     compareImage = compareInt.ToString() + compareInt.ToString() + compareInt.ToString() + compareInt.ToString();
@@ -131,6 +134,41 @@ namespace Capstone_Project_598
 
                                 Image realImage = imageDictionary[compareInt];
                                 ///set to a random picture box to ensure we're showing correct one, and three random and go from there
+
+                                Random rand = new Random();
+                                int i = rand.Next(4);               //0-3
+
+                                pictureBoxes[i].Image = realImage;
+                                int [] indexforImages  = new int[4];
+
+                                compareInt--;
+                                indexforImages[1] = rand.Next(12);       //0-11
+                                while (indexforImages[1] == compareInt)
+                                    indexforImages[1] = rand.Next(12);
+                                indexforImages[2] = rand.Next(12);
+                                while (indexforImages[2] == indexforImages[1] || indexforImages[2] == compareInt)
+                                    indexforImages[2] = rand.Next(12);
+                                indexforImages[3] = rand.Next(12);
+                                while (indexforImages[3] == indexforImages[2] || indexforImages[3] == indexforImages[1] || indexforImages[3] == compareInt)
+                                    indexforImages[3] = rand.Next(12);
+
+                                for(int jj = 0; jj < 4; jj++)
+                                {
+                                    if (jj != i)
+                                        pictureBoxes[jj].Image = imageDictionary[indexforImages[jj] + 1];
+                                }
+
+
+
+                                                    /////REWORK
+
+
+
+
+                                foreach (PictureBox yy in pictureBoxes)
+                                    yy.Visible = true;
+                                foreach (CheckBox xxx in checkBoxes)
+                                    xxx.Visible = true;
 
 
 
@@ -234,8 +272,8 @@ namespace Capstone_Project_598
 
         private void initLists()
         {
-            List<PictureBox> pictureBoxes = new List<PictureBox>();
-            List<CheckBox> checkBoxes = new List<CheckBox>();
+            pictureBoxes = new List<PictureBox>();
+            checkBoxes = new List<CheckBox>();
 
             pictureBoxes.Add(pictureBox1); pictureBoxes.Add(pictureBox2);
             pictureBoxes.Add(pictureBox3); pictureBoxes.Add(pictureBox4);
