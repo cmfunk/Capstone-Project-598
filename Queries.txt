@@ -4,8 +4,7 @@ use cmfunk15;
 
 
 drop table if exists dbo.Account
-drop table if exists dbo.Customer
-drop table if exists dbo.ATMTransction
+drop table if exists dbo.ATMTransctions
 drop table if exists dbo.ATM
 drop table if exists dbo.CheckingAccount
 drop table if exists dbo.SavingsAccount
@@ -23,30 +22,18 @@ create table dbo.Account
 	unique(Username,Pass1Textphrase)
 );
 
-create table dbo.Customer
+create table ATMTransactions
 (
-	CustomerID int not null identity(1,1) primary key,
-	AccountID int not null foreign key references dbo.Account(AccountID),
-	Name nvarchar(80) ,--not null,
-	Address nvarchar(100) ,--not null,
-	DOB datetimeoffset ,--not null,
-	CardNumber int ,--not null,
-	Pin int ,--not null
-	unique(Name, Address, DOB, CardNumber, Pin)
+	ATMTransactionsID int not null identity(1,1) primary key,
+	Date datetimeoffset ,--not null,
+	Type varchar(8) not null check (Type in('Savings ','Checking')),
+	Amount float not null,
 );
-
---create table ATMTransaction
---(
---	ATMTransactionID int not null identity(1,1) primary key,
---	Date datetimeoffset ,--not null,
---	Type varchar(8) not null check (Type in('Savings ','Checking')),
---	Amount float not null,
---);
 
 create table ATM
 (
 	ATMID int not null identity(1,1) primary key,
-	ATMTransactionID int not null foreign key references dbo.ATMTransaction(ATMTransactionID),
+	ATMTransactionsID int not null foreign key references dbo.ATMTransactions(ATMTransactionsID),
 	Location nvarchar(100) --not null
 );
 
@@ -71,8 +58,7 @@ select * from dbo.Account
 where Username = N'cmfunk15'
 
 select * from dbo.Account
-select * from dbo.Customer
-select * from dbo.ATMTransaction
+select * from dbo.ATMTransactions
 select * from dbo.ATM
 select * from dbo.CheckingAccount
 select * from dbo.SavingsAccount
@@ -83,8 +69,6 @@ select * from dbo.SavingsAccount
 insert dbo.Account(Username, Pass1Textphrase, Balance, Pass2Colorcode)
 values(N'secondUser', N'fdssaw0rd', 605.23, N'GBYGBRYYP');
 
-insert dbo.Customer(AccountID, Name, Address, DOB, CardNumber, Pin)
-values (1, N'test', N'666testing', '20190927 03:34:00 +10:00', 65463456, 7786);
 
 
 
@@ -113,9 +97,7 @@ values (1, N'test', N'666testing', '20190927 03:34:00 +10:00', 65463456, 7786);
 
 
 
-
-
-######stored procedures########
+--######stored procedures########
 USE [cmfunk15]
 GO
 /****** Object:  StoredProcedure [dbo].[AddAccount]    Script Date: 12/10/2019 2:34:33 PM ******/

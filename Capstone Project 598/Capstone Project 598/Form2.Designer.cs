@@ -29,12 +29,8 @@
         private void InitializeComponent()
         {
             this.TopPanel = new System.Windows.Forms.Panel();
-            this.minButton = new Capstone_Project_598.ButtonZ();
-            this.closeButton = new Capstone_Project_598.ButtonZ();
             this.leftTopPanel = new System.Windows.Forms.Panel();
             this.logonLabel = new System.Windows.Forms.Label();
-            this.usernameTextBox = new Capstone_Project_598.TextBox2();
-            this.passwordTextBox = new Capstone_Project_598.TextBox2();
             this.uxUserLabel = new System.Windows.Forms.Label();
             this.uxPassLabel = new System.Windows.Forms.Label();
             this.continueButton = new System.Windows.Forms.Button();
@@ -57,6 +53,12 @@
             this.blueButton = new System.Windows.Forms.Button();
             this.redButton = new System.Windows.Forms.Button();
             this.yellowButton = new System.Windows.Forms.Button();
+            this.maxPatternLabel = new System.Windows.Forms.Label();
+            this.minPatternLabel = new System.Windows.Forms.Label();
+            this.passwordTextBox = new Capstone_Project_598.TextBox2();
+            this.usernameTextBox = new Capstone_Project_598.TextBox2();
+            this.minButton = new Capstone_Project_598.ButtonZ();
+            this.closeButton = new Capstone_Project_598.ButtonZ();
             this.TopPanel.SuspendLayout();
             this.leftTopPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -79,45 +81,6 @@
             this.TopPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseDown);
             this.TopPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseMove);
             this.TopPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseUp);
-            // 
-            // minButton
-            // 
-            this.minButton.BZBackColor = System.Drawing.Color.White;
-            this.minButton.DisplayText = "_";
-            this.minButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.minButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.minButton.ForeColor = System.Drawing.Color.Black;
-            this.minButton.Location = new System.Drawing.Point(144, 3);
-            this.minButton.MouseClickColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(140)))), ((int)(((byte)(60)))));
-            this.minButton.MouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(180)))), ((int)(((byte)(80)))));
-            this.minButton.Name = "minButton";
-            this.minButton.Size = new System.Drawing.Size(31, 24);
-            this.minButton.TabIndex = 2;
-            this.minButton.Text = "_";
-            this.minButton.TextLocation_X = 6;
-            this.minButton.TextLocation_Y = -18;
-            this.minButton.UseVisualStyleBackColor = true;
-            this.minButton.Click += new System.EventHandler(this.MinButton_Click);
-            // 
-            // closeButton
-            // 
-            this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.closeButton.BZBackColor = System.Drawing.Color.White;
-            this.closeButton.DisplayText = "X";
-            this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.closeButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closeButton.ForeColor = System.Drawing.Color.Black;
-            this.closeButton.Location = new System.Drawing.Point(173, 4);
-            this.closeButton.MouseClickColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.closeButton.MouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(20)))), ((int)(((byte)(40)))));
-            this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(24, 22);
-            this.closeButton.TabIndex = 1;
-            this.closeButton.Text = "X";
-            this.closeButton.TextLocation_X = 5;
-            this.closeButton.TextLocation_Y = -2;
-            this.closeButton.UseVisualStyleBackColor = true;
-            this.closeButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // leftTopPanel
             // 
@@ -144,26 +107,6 @@
             this.logonLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseDown);
             this.logonLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseMove);
             this.logonLabel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseUp);
-            // 
-            // usernameTextBox
-            // 
-            this.usernameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usernameTextBox.Location = new System.Drawing.Point(146, 101);
-            this.usernameTextBox.Name = "usernameTextBox";
-            this.usernameTextBox.Size = new System.Drawing.Size(145, 26);
-            this.usernameTextBox.TabIndex = 16;
-            this.usernameTextBox.TextChangedDelayed += new System.EventHandler(this.UsernameTextBox_TextChangedDelayed);
-            this.usernameTextBox.TextChanged += new System.EventHandler(this.UsernameTextBox_TextChanged);
-            // 
-            // passwordTextBox
-            // 
-            this.passwordTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordTextBox.Location = new System.Drawing.Point(146, 150);
-            this.passwordTextBox.Name = "passwordTextBox";
-            this.passwordTextBox.Size = new System.Drawing.Size(145, 26);
-            this.passwordTextBox.TabIndex = 17;
-            this.passwordTextBox.TextChangedDelayed += new System.EventHandler(this.PasswordTextBox_TextChangedDelayed);
-            this.passwordTextBox.TextChanged += new System.EventHandler(this.PasswordTextBox_TextChanged);
             // 
             // uxUserLabel
             // 
@@ -328,6 +271,7 @@
             this.submitPatternButton.Text = "Continue";
             this.submitPatternButton.UseVisualStyleBackColor = true;
             this.submitPatternButton.Visible = false;
+            this.submitPatternButton.Click += new System.EventHandler(this.SubmitPatternButton_Click);
             // 
             // patternLa
             // 
@@ -347,6 +291,7 @@
             this.greenButton.TabIndex = 42;
             this.greenButton.UseVisualStyleBackColor = false;
             this.greenButton.Visible = false;
+            this.greenButton.Click += new System.EventHandler(this.GreenButton_Click);
             // 
             // purpleButton
             // 
@@ -357,6 +302,7 @@
             this.purpleButton.TabIndex = 43;
             this.purpleButton.UseVisualStyleBackColor = false;
             this.purpleButton.Visible = false;
+            this.purpleButton.Click += new System.EventHandler(this.PurpleButton_Click);
             // 
             // blueButton
             // 
@@ -367,6 +313,7 @@
             this.blueButton.TabIndex = 44;
             this.blueButton.UseVisualStyleBackColor = false;
             this.blueButton.Visible = false;
+            this.blueButton.Click += new System.EventHandler(this.BlueButton_Click);
             // 
             // redButton
             // 
@@ -377,6 +324,7 @@
             this.redButton.TabIndex = 45;
             this.redButton.UseVisualStyleBackColor = false;
             this.redButton.Visible = false;
+            this.redButton.Click += new System.EventHandler(this.RedButton_Click);
             // 
             // yellowButton
             // 
@@ -387,12 +335,96 @@
             this.yellowButton.TabIndex = 46;
             this.yellowButton.UseVisualStyleBackColor = false;
             this.yellowButton.Visible = false;
+            this.yellowButton.Click += new System.EventHandler(this.YellowButton_Click);
+            // 
+            // maxPatternLabel
+            // 
+            this.maxPatternLabel.AutoSize = true;
+            this.maxPatternLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maxPatternLabel.Location = new System.Drawing.Point(284, 226);
+            this.maxPatternLabel.Name = "maxPatternLabel";
+            this.maxPatternLabel.Size = new System.Drawing.Size(117, 13);
+            this.maxPatternLabel.TabIndex = 47;
+            this.maxPatternLabel.Text = "# max: 16 characters #";
+            this.maxPatternLabel.Visible = false;
+            // 
+            // minPatternLabel
+            // 
+            this.minPatternLabel.AutoSize = true;
+            this.minPatternLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.minPatternLabel.Location = new System.Drawing.Point(288, 210);
+            this.minPatternLabel.Name = "minPatternLabel";
+            this.minPatternLabel.Size = new System.Drawing.Size(108, 13);
+            this.minPatternLabel.TabIndex = 48;
+            this.minPatternLabel.Text = "# min: 8 characters #";
+            this.minPatternLabel.Visible = false;
+            // 
+            // passwordTextBox
+            // 
+            this.passwordTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passwordTextBox.Location = new System.Drawing.Point(146, 150);
+            this.passwordTextBox.Name = "passwordTextBox";
+            this.passwordTextBox.Size = new System.Drawing.Size(145, 26);
+            this.passwordTextBox.TabIndex = 17;
+            this.passwordTextBox.TextChangedDelayed += new System.EventHandler(this.PasswordTextBox_TextChangedDelayed);
+            this.passwordTextBox.TextChanged += new System.EventHandler(this.PasswordTextBox_TextChanged);
+            // 
+            // usernameTextBox
+            // 
+            this.usernameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usernameTextBox.Location = new System.Drawing.Point(146, 101);
+            this.usernameTextBox.Name = "usernameTextBox";
+            this.usernameTextBox.Size = new System.Drawing.Size(145, 26);
+            this.usernameTextBox.TabIndex = 16;
+            this.usernameTextBox.TextChangedDelayed += new System.EventHandler(this.UsernameTextBox_TextChangedDelayed);
+            this.usernameTextBox.TextChanged += new System.EventHandler(this.UsernameTextBox_TextChanged);
+            // 
+            // minButton
+            // 
+            this.minButton.BZBackColor = System.Drawing.Color.White;
+            this.minButton.DisplayText = "_";
+            this.minButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.minButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.minButton.ForeColor = System.Drawing.Color.Black;
+            this.minButton.Location = new System.Drawing.Point(144, 3);
+            this.minButton.MouseClickColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(140)))), ((int)(((byte)(60)))));
+            this.minButton.MouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(180)))), ((int)(((byte)(80)))));
+            this.minButton.Name = "minButton";
+            this.minButton.Size = new System.Drawing.Size(31, 24);
+            this.minButton.TabIndex = 2;
+            this.minButton.Text = "_";
+            this.minButton.TextLocation_X = 6;
+            this.minButton.TextLocation_Y = -18;
+            this.minButton.UseVisualStyleBackColor = true;
+            this.minButton.Click += new System.EventHandler(this.MinButton_Click);
+            // 
+            // closeButton
+            // 
+            this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.closeButton.BZBackColor = System.Drawing.Color.White;
+            this.closeButton.DisplayText = "X";
+            this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closeButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closeButton.ForeColor = System.Drawing.Color.Black;
+            this.closeButton.Location = new System.Drawing.Point(173, 4);
+            this.closeButton.MouseClickColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.closeButton.MouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(20)))), ((int)(((byte)(40)))));
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(24, 22);
+            this.closeButton.TabIndex = 1;
+            this.closeButton.Text = "X";
+            this.closeButton.TextLocation_X = 5;
+            this.closeButton.TextLocation_Y = -2;
+            this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // LogonForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(413, 319);
+            this.Controls.Add(this.minPatternLabel);
+            this.Controls.Add(this.maxPatternLabel);
             this.Controls.Add(this.yellowButton);
             this.Controls.Add(this.redButton);
             this.Controls.Add(this.blueButton);
@@ -465,5 +497,7 @@
         private System.Windows.Forms.Button blueButton;
         private System.Windows.Forms.Button redButton;
         private System.Windows.Forms.Button yellowButton;
+        private System.Windows.Forms.Label maxPatternLabel;
+        private System.Windows.Forms.Label minPatternLabel;
     }
 }

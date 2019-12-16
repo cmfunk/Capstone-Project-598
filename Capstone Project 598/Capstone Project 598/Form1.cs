@@ -22,7 +22,7 @@ namespace Capstone_Project_598
         private SqlConnection _con = new SqlConnection(Capstone_Project_598.Properties.Settings.Default.cmfunk15ConnectionString);
         private SqlCommand _cmd = new SqlCommand();
         //private SqlDataReader _reader;
-        int[] possibleValues;
+        int[] possibleValues;                   private Encryptor encr;// = new Encryptor()
 
         private string Username;
         private string Password;
@@ -46,7 +46,7 @@ namespace Capstone_Project_598
             //State = 0;
             possibleValues = new int[4];
             checkBoxes = new List<CheckBox>(); pictureBoxes = new List<PictureBox>();   coloredButtons = new List<Button>();
-            initStuff();
+            initStuff();                encr = new Encryptor();
 
             foreach (PictureBox ee in pictureBoxes)
                 ee.Visible = false;
@@ -176,7 +176,7 @@ namespace Capstone_Project_598
 
             if (ree.Length > 7 && !regexItem.IsMatch(ree))
             {
-                Password = encryptString(ree);
+                Password = encr.encryptString(ree);
 
                 bigTextLabel.Text = "3) Please choose a picture";
                 choosePasswordButton.Visible = false; chooseUsernameButton.Visible = false;
@@ -305,9 +305,9 @@ namespace Capstone_Project_598
             
             if (patternLa.Text.Length > 7)
             {
-                string colorCode = encryptString(patternLa.Text);
+                string colorCode = encr.encryptString(patternLa.Text);
 
-                string ImageHash = encryptString(ImageforSegmentation);
+                string ImageHash = encr.encryptString(ImageforSegmentation);
 
                 _cmd.Parameters.Clear();
 
@@ -409,22 +409,6 @@ namespace Capstone_Project_598
 
         }
 
-
-        private string encryptString(string a)
-        {
-            byte[] data;
-
-            string Hash = a;
-            for(int i = 0; i < 1000; i++)
-            {
-                data = System.Text.Encoding.ASCII.GetBytes(Hash);
-                data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
-                Hash = System.Text.Encoding.ASCII.GetString(data);
-            }
-
-            return Hash;
-        }
-
         private void initStuff()
         {
             pictureBoxes.Add(pictureBox1); pictureBoxes.Add(pictureBox2);
@@ -433,6 +417,7 @@ namespace Capstone_Project_598
             checkBoxes.Add(checkBox3); checkBoxes.Add(checkBox4);
             coloredButtons.Add(redButton); coloredButtons.Add(greenButton); coloredButtons.Add(blueButton);
             coloredButtons.Add(yellowButton); coloredButtons.Add(purpleButton);
+
         }
     }
 }

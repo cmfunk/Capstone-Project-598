@@ -16,8 +16,9 @@ namespace Capstone_Project_598
     {
         private UserInterface ownerForm = null;
         bool isTopPanelDragged = false;
-        private Point offset;
+        private Point offset;               private Encryptor encr;
 
+        int[] possibleValues;
         List<PictureBox> pictureBoxes;
         List<CheckBox> checkBoxes;
         List<Button> coloredButtons;
@@ -27,7 +28,6 @@ namespace Capstone_Project_598
         private string UserName;
         private string Password;
         private string imageCode;
-        private string colorCode;
 
         private Dictionary<int, Image> imageDictionary;
 
@@ -42,7 +42,7 @@ namespace Capstone_Project_598
             this.ownerForm = ownerForm;
             continueButton.Enabled = false;
 
-            initLists();
+            initLists();                    encr = new Encryptor();
         }
 
         private void MinButton_Click(object sender, EventArgs e)
@@ -108,7 +108,7 @@ namespace Capstone_Project_598
                         while (oReader.Read())                                          ////////if not correct username, Will not read
                         {
                             isUsernameinDB = true;
-                            string hashedtempPass = encryptString(tempPass);
+                            string hashedtempPass = encr.encryptString(tempPass);
 
                             comparePass = oReader["Pass1Textphrase"].ToString();            
 
@@ -129,7 +129,7 @@ namespace Capstone_Project_598
                                 {
                                     i++;
                                     compareHash = i.ToString() + i.ToString() + i.ToString() + i.ToString();
-                                    compareHash = encryptString(compareHash);
+                                    compareHash = encr.encryptString(compareHash);
                                 }
 
                                 imageCode = i.ToString() + i.ToString() + i.ToString() + i.ToString();
@@ -151,13 +151,18 @@ namespace Capstone_Project_598
                                 while (index[2] == index[1] || index[2] == index[0] || index[2] == i)
                                     index[2] = rand.Next(12);
                                 index[3] = rand.Next(12);
-                                while (index[3] == index[1] || index[3] == index[2] || index[3] == index[1] || index[3] == i)
+                                while (index[3] == index[2] || index[3] == index[1] || index[3] == index[0] || index[3] == i)
                                     index[3] = rand.Next(12);
 
-                                for(int k = 0; k < 4; k++)
+                                possibleValues[j] = i;
+
+                                for (int k = 0; k < 4; k++)
                                 {
                                     if (k != j)
+                                    {
                                         pictureBoxes[k].Image = imageDictionary[index[k]];
+                                        possibleValues[k] = index[k];
+                                    }
                                 }
 
                                 imageSubmitButton.Visible = true;       imageSubmitButton.Enabled = false;
@@ -165,7 +170,6 @@ namespace Capstone_Project_598
                                     yy.Visible = true;
                                 foreach (CheckBox xxx in checkBoxes)
                                     xxx.Visible = true;
-
 
                             }
                             else
@@ -207,9 +211,12 @@ namespace Capstone_Project_598
             while (index[3] == index[1] || index[3] == index[2] || index[3] == index[1])
                 index[3] = rand.Next(12);
 
+            
+
             for (int k = 0; k < 4; k++)
             {
                 pictureBoxes[k].Image = imageDictionary[index[k]];
+                possibleValues[k] = index[k];
             }
 
             imageSubmitButton.Visible = true; imageSubmitButton.Enabled = false;
@@ -296,21 +303,6 @@ namespace Capstone_Project_598
             }
         }
 
-        private string encryptString(string a)
-        {
-            byte[] data;
-
-            string Hash = a;
-            for (int i = 0; i < 1000; i++)
-            {
-                data = System.Text.Encoding.ASCII.GetBytes(Hash);
-                data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
-                Hash = System.Text.Encoding.ASCII.GetString(data);
-            }
-
-            return Hash;
-        }
-
         private void initLists()
         {
             submitPatternButton.Visible = false;
@@ -318,6 +310,7 @@ namespace Capstone_Project_598
             pictureBoxes = new List<PictureBox>();
             checkBoxes = new List<CheckBox>();
             coloredButtons = new List<Button>();
+            possibleValues = new int[4];
 
             coloredButtons.Add(redButton); coloredButtons.Add(greenButton); coloredButtons.Add(blueButton);
             coloredButtons.Add(yellowButton);           coloredButtons.Add(purpleButton);
@@ -325,6 +318,9 @@ namespace Capstone_Project_598
             pictureBoxes.Add(pictureBox3); pictureBoxes.Add(pictureBox4);
             checkBoxes.Add(checkBox1); checkBoxes.Add(checkBox2);
             checkBoxes.Add(checkBox3); checkBoxes.Add(checkBox4);
+
+            minPatternLabel.Visible = false;
+            maxPatternLabel.Visible = false;
 
             foreach (Button bb in coloredButtons)
                 bb.Visible = false;
@@ -360,41 +356,127 @@ namespace Capstone_Project_598
         }
 
         private void ImageSubmitButton_Click(object sender, EventArgs e)
-        {   
+        {
             //if (checkBox1.Checked)                                            CHECKING IF CORRECT IMAGE ://////////////////    FOR TRUE OR FALSE
 
-            bigTextLabel.Text = "4) Please choose a pattern";
+            if (checkBox1.Checked)
+                imageCode = possibleValues[0].ToString() + possibleValues[0].ToString() + possibleValues[0].ToString() + possibleValues[0].ToString();
+            else if (checkBox2.Checked)
+                imageCode = possibleValues[1].ToString() + possibleValues[1].ToString() + possibleValues[1].ToString() + possibleValues[1].ToString();
+            else if (checkBox3.Checked)
+                imageCode = possibleValues[2].ToString() + possibleValues[2].ToString() + possibleValues[2].ToString() + possibleValues[2].ToString();
+            else if (checkBox4.Checked)
+                imageCode = possibleValues[3].ToString() + possibleValues[3].ToString() + possibleValues[3].ToString() + possibleValues[3].ToString();
+
+            bigTextLabel.Text = "4) Please complete your pattern.";
             imageSubmitButton.Visible = false;
             foreach (PictureBox x in pictureBoxes)
                 x.Visible = false;
             foreach (CheckBox y in checkBoxes)
                 y.Visible = false;
 
-
-
-
-            /*if (checkBox1.Checked)
-                ImageforSegmentation = possibleValues[0].ToString() + possibleValues[0].ToString() + possibleValues[0].ToString() + possibleValues[0].ToString();
-            else if (checkBox2.Checked)
-                ImageforSegmentation = possibleValues[1].ToString() + possibleValues[1].ToString() + possibleValues[1].ToString() + possibleValues[1].ToString();
-            else if (checkBox3.Checked)
-                ImageforSegmentation = possibleValues[2].ToString() + possibleValues[2].ToString() + possibleValues[2].ToString() + possibleValues[2].ToString();
-            else if (checkBox4.Checked)
-                ImageforSegmentation = possibleValues[3].ToString() + possibleValues[3].ToString() + possibleValues[3].ToString() + possibleValues[3].ToString();
-
-            bigTextLabel.Text = "4) Please choose a pattern";
-            imageSubmitButton.Visible = false;
-            foreach (PictureBox ee in pictureBoxes)
-                ee.Visible = false;
-            foreach (CheckBox rr in checkBoxes)
-                rr.Visible = false;
+            foreach (Button q in coloredButtons)
+                q.Visible = true;
 
             submitPatternButton.Visible = true;
-            foreach (Button bb in coloredButtons)
-                bb.Visible = true;
-
             patternLa.Visible = true;
-            minPatternLabel.Visible = true;         maxPatternLabel.Visible = true;*/
+
+            minPatternLabel.Visible = true;
+            maxPatternLabel.Visible = true;
+
+
+        }
+
+        private void DisableButtons ()
+        {
+            foreach (Button bb in coloredButtons)
+                bb.Enabled = false;
+        }
+
+        private void RedButton_Click(object sender, EventArgs e)
+        {
+            patternLa.Text += "R";
+            minPatternLabel.Visible = patternLa.Text.Length > 7 ? false : true;
+            if (patternLa.Text.Length == 16)
+                DisableButtons();
+
+            submitPatternButton.Enabled = patternLa.Text.Length > 7 ? true : false;
+        }
+
+        private void YellowButton_Click(object sender, EventArgs e)
+        {
+            patternLa.Text += "Y";
+            minPatternLabel.Visible = patternLa.Text.Length > 7 ? false : true;
+            if (patternLa.Text.Length == 16)
+                DisableButtons();
+
+            submitPatternButton.Enabled = patternLa.Text.Length > 7 ? true : false;
+        }
+
+        private void GreenButton_Click(object sender, EventArgs e)
+        {
+            patternLa.Text += "G";
+            minPatternLabel.Visible = patternLa.Text.Length > 7 ? false : true;
+            if (patternLa.Text.Length == 16)
+                DisableButtons();
+
+            submitPatternButton.Enabled = patternLa.Text.Length > 7 ? true : false;
+        }
+
+        private void PurpleButton_Click(object sender, EventArgs e)
+        {
+            patternLa.Text += "P";
+            minPatternLabel.Visible = patternLa.Text.Length > 7 ? false : true;
+            if (patternLa.Text.Length == 16)
+                DisableButtons();
+
+            submitPatternButton.Enabled = patternLa.Text.Length > 7 ? true : false;
+        }
+
+        private void BlueButton_Click(object sender, EventArgs e)
+        {
+            patternLa.Text += "B";
+            minPatternLabel.Visible = patternLa.Text.Length > 7 ? false : true;
+            if (patternLa.Text.Length == 16)
+                DisableButtons();
+
+            submitPatternButton.Enabled = patternLa.Text.Length > 7 ? true : false;
+        }
+
+        private void SubmitPatternButton_Click(object sender, EventArgs e)
+        {
+            string hashedPassword = encr.encryptString(Password);
+            string hashedImage = encr.encryptString(imageCode);
+            string hashedPattern = encr.encryptString(patternLa.Text);
+
+            bool isUsernameinDBO = false;
+            using (SqlConnection _con = new SqlConnection(Capstone_Project_598.Properties.Settings.Default.cmfunk15ConnectionString))
+            {
+                string oString = "select * from dbo.Account where Username = N'" + UserName + "'";
+                SqlCommand ocmd = new SqlCommand(oString, _con);
+                ocmd.Parameters.Clear();
+                ocmd.Parameters.AddWithValue("@UserName", UserName);
+                _con.Open();
+                using (SqlDataReader oReader = ocmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        isUsernameinDBO = true;
+                        string cmpPass = oReader["Pass1Textphrase"].ToString();
+                        string cmpColor = oReader["Pass2Colorcode"].ToString();
+                        string cmpImage = oReader["Pass3Image"].ToString();
+
+                        if (hashedPassword == cmpPass && hashedImage == cmpImage && hashedPattern == cmpColor)
+                            MessageBox.Show("##Successfull logon.##", "Success!");
+                        else
+                        { MessageBox.Show("Invalid Credentials"); this.Close(); }
+                    }
+                    if (!isUsernameinDBO)
+                    { MessageBox.Show("Invalid Credentials"); this.Close(); }
+                }
+            }
+
+
         }
     }
 }
