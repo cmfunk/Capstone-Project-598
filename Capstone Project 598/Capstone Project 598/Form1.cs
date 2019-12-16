@@ -305,7 +305,8 @@ namespace Capstone_Project_598
             
             if (patternLa.Text.Length > 7)
             {
-                string colorCode = encr.encryptString(patternLa.Text);
+                string tempColor = patternLa.Text;
+                string colorCode = encr.encryptString(tempColor);
 
                 string ImageHash = encr.encryptString(ImageforSegmentation);
 
@@ -318,8 +319,8 @@ namespace Capstone_Project_598
 
                 _cmd.Parameters.AddWithValue("@UserName", Username);
                 _cmd.Parameters.AddWithValue("@Pass1Textphrase", Password);
-                _cmd.Parameters.AddWithValue("@Pass2Colorcode", colorCode);
-                _cmd.Parameters.AddWithValue("@Pass3Image", ImageHash/*ImageforSegmentation*/);
+                _cmd.Parameters.AddWithValue("@Pass2Colorcode", tempColor);
+                _cmd.Parameters.AddWithValue("@Pass3Image", ImageHash);
                 _cmd.ExecuteNonQuery();
                 _con.Close();
 
@@ -404,7 +405,7 @@ namespace Capstone_Project_598
             foreach (Button bb in coloredButtons)
                 bb.Visible = true;
 
-            patternLa.Visible = true;
+            patternLa.Text = "";        patternLa.Visible = true;
             minPatternLabel.Visible = true;         maxPatternLabel.Visible = true;
 
         }

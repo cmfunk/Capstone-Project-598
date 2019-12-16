@@ -166,11 +166,11 @@ namespace Capstone_Project_598
                                 }
 
                                 imageSubmitButton.Visible = true;       imageSubmitButton.Enabled = false;
+                                
                                 foreach (PictureBox yy in pictureBoxes)
                                     yy.Visible = true;
                                 foreach (CheckBox xxx in checkBoxes)
                                     xxx.Visible = true;
-
                             }
                             else
                             { alternatePath(tempUser); }
@@ -379,7 +379,7 @@ namespace Capstone_Project_598
                 q.Visible = true;
 
             submitPatternButton.Visible = true;
-            patternLa.Visible = true;
+            patternLa.Text = "";     patternLa.Visible = true;
 
             minPatternLabel.Visible = true;
             maxPatternLabel.Visible = true;
@@ -447,7 +447,8 @@ namespace Capstone_Project_598
         {
             string hashedPassword = encr.encryptString(Password);
             string hashedImage = encr.encryptString(imageCode);
-            string hashedPattern = encr.encryptString(patternLa.Text);
+            string tempCol = patternLa.Text;
+            //string hashedPattern = encr.encryptString(tempCol);
 
             bool isUsernameinDBO = false;
             using (SqlConnection _con = new SqlConnection(Capstone_Project_598.Properties.Settings.Default.cmfunk15ConnectionString))
@@ -466,17 +467,25 @@ namespace Capstone_Project_598
                         string cmpColor = oReader["Pass2Colorcode"].ToString();
                         string cmpImage = oReader["Pass3Image"].ToString();
 
-                        if (hashedPassword == cmpPass && hashedImage == cmpImage && hashedPattern == cmpColor)
+                        /*if (hashedPassword == cmpPass)
+                            MessageBox.Show("Correct password.");
+                        if (hashedImage == cmpImage)
+                            MessageBox.Show("Correct image permutation.");
+                        MessageBox.Show("len1 is " + tempCol.Length + "  and is " + tempCol);
+                        MessageBox.Show("len2 is " + cmpColor.Length + "  and is " + cmpColor);
+                        MessageBox.Show(tempCol.Contains(cmpColor).ToString());
+                        if (tempCol == cmpColor)
+                            MessageBox.Show("Correct pattern");*/
+
+                        if (hashedPassword == cmpPass && hashedImage == cmpImage && tempCol == cmpColor)
                             MessageBox.Show("##Successfull logon.##", "Success!");
                         else
-                        { MessageBox.Show("Invalid Credentials"); this.Close(); }
+                        { MessageBox.Show("Invalid Credentials.", "Invalid Credentials."); this.Close(); }
                     }
                     if (!isUsernameinDBO)
-                    { MessageBox.Show("Invalid Credentials"); this.Close(); }
+                    { MessageBox.Show("Invalid Credentials.", "Invalid Credentials."); this.Close(); }
                 }
             }
-
-
         }
     }
 }
