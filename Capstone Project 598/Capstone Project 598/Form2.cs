@@ -318,6 +318,10 @@ namespace Capstone_Project_598
             pictureBoxes.Add(pictureBox3); pictureBoxes.Add(pictureBox4);
             checkBoxes.Add(checkBox1); checkBoxes.Add(checkBox2);
             checkBoxes.Add(checkBox3); checkBoxes.Add(checkBox4);
+            expensesLine1.Visible = false;      transactionsLabel.Visible = false;
+            expensesLine2.Visible = false;      expensesLine3.Visible = false;
+            expensesLine4.Visible = false;      expensesLine5.Visible = false;
+            finalBalanceLab.Visible = false;
 
             minPatternLabel.Visible = false;
             maxPatternLabel.Visible = false;
@@ -368,7 +372,7 @@ namespace Capstone_Project_598
             else if (checkBox4.Checked)
                 imageCode = possibleValues[3].ToString() + possibleValues[3].ToString() + possibleValues[3].ToString() + possibleValues[3].ToString();
 
-            bigTextLabel.Text = "4) Please complete your pattern.";
+            bigTextLabel.Text = "3) Please complete your pattern.";
             imageSubmitButton.Visible = false;
             foreach (PictureBox x in pictureBoxes)
                 x.Visible = false;
@@ -443,11 +447,17 @@ namespace Capstone_Project_598
             submitPatternButton.Enabled = patternLa.Text.Length > 7 ? true : false;
         }
 
+        private double GetRandomNumber (double min, double max)
+        {
+            double tmp = rand.NextDouble() * (max - min) + min;
+            return tmp;
+        }
+
         private void SubmitPatternButton_Click(object sender, EventArgs e)
         {
             string hashedPassword = encr.encryptString(Password);
-            string hashedImage = encr.encryptString(imageCode);
-            string tempCol = patternLa.Text;
+            string hashedImage = encr.encryptString(imageCode); 
+            string tempCol = patternLa.Text; double balanceTmp;     double transTmp;
             //string hashedPattern = encr.encryptString(tempCol);
 
             bool isUsernameinDBO = false;
@@ -467,18 +477,88 @@ namespace Capstone_Project_598
                         string cmpColor = oReader["Pass2Colorcode"].ToString();
                         string cmpImage = oReader["Pass3Image"].ToString();
 
-                        /*if (hashedPassword == cmpPass)
-                            MessageBox.Show("Correct password.");
-                        if (hashedImage == cmpImage)
-                            MessageBox.Show("Correct image permutation.");
-                        MessageBox.Show("len1 is " + tempCol.Length + "  and is " + tempCol);
-                        MessageBox.Show("len2 is " + cmpColor.Length + "  and is " + cmpColor);
-                        MessageBox.Show(tempCol.Contains(cmpColor).ToString());
-                        if (tempCol == cmpColor)
-                            MessageBox.Show("Correct pattern");*/
-
                         if (hashedPassword == cmpPass && hashedImage == cmpImage && tempCol == cmpColor)
+                        {
                             MessageBox.Show("##Successfull logon.##", "Success!");
+                            balanceTmp = GetRandomNumber(400.0, 6000.0);
+                            bigTextLabel.Visible = false;//.Text = "Total Balance : $" + balanceTmp.ToString("#,###,###.##");//String.Format("{0:0.00}%", balanceTmp);             //balance at END!!!!!!!!
+                            submitPatternButton.Visible = false;  maxPatternLabel.Visible = false;  minPatternLabel.Visible = false;
+                            submitPatternButton.Visible = false;        patternLa.Visible = false;
+
+                            logonLabel.Text = "Transactions"; transactionsLabel.Text = "Beginning Balance of :  $" + balanceTmp.ToString("#,###,###.##");
+                            foreach (Button wwww in coloredButtons)
+                                wwww.Visible = false;
+
+                            transTmp = GetRandomNumber(10.0, 800.0);     
+                            int reee = rand.Next(2);
+                            if (reee == 0)
+                                transTmp *= -1;
+                            balanceTmp += transTmp;
+                            expensesLine1.BackColor = transTmp < 0 ?  Color.Firebrick : Color.RoyalBlue;
+                            expensesLine1.ForeColor = transTmp < 0 ? Color.Black : Color.White;
+                            DateTime start = new DateTime(2019, 12, 16);
+                            reee = rand.Next(25, 30);
+                            start = start.AddDays(Convert.ToDouble(reee) * -1);
+                            expensesLine1.Text = "On " + start.ToShortDateString() + " a transcation of " + transTmp.ToString("#,###,###.##") +" => " + balanceTmp.ToString("#,###,###.##");
+                            expensesLine1.Visible = true;         transactionsLabel.Visible = true;
+
+                            transTmp = GetRandomNumber(10.0, 700.0);
+                            reee = rand.Next(2);
+                            if (reee == 0)
+                                transTmp *= -1;
+                            balanceTmp += transTmp;
+                            expensesLine2.BackColor = transTmp < 0 ? Color.Firebrick : Color.RoyalBlue;
+                            expensesLine2.ForeColor = transTmp < 0 ? Color.Black : Color.White;
+                            start = new DateTime(2019, 12, 16);
+                            reee = rand.Next(20, 25);
+                            start = start.AddDays(Convert.ToDouble(reee) * -1);
+                            expensesLine2.Text = "On " + start.ToShortDateString() + " a transcation of " + transTmp.ToString("#,###,###.##") + " => " + balanceTmp.ToString("#,###,###.##");
+                            expensesLine2.Visible = true;
+
+                            transTmp = GetRandomNumber(10.0, 700.0);
+                            reee = rand.Next(2);
+                            if (reee == 0)
+                                transTmp *= -1;
+                            balanceTmp += transTmp;
+                            expensesLine3.BackColor = transTmp < 0 ? Color.Firebrick : Color.RoyalBlue;
+                            expensesLine3.ForeColor = transTmp < 0 ? Color.Black : Color.White;
+                            start = new DateTime(2019, 12, 16);
+                            reee = rand.Next(15, 20);
+                            start = start.AddDays(Convert.ToDouble(reee) * -1);
+                            expensesLine3.Text = "On " + start.ToShortDateString() + " a transcation of " + transTmp.ToString("#,###,###.##") + " => " + balanceTmp.ToString("#,###,###.##");
+                            expensesLine3.Visible = true;
+
+                            transTmp = GetRandomNumber(10.0, 600.0);
+                            reee = rand.Next(2);
+                            if (reee == 0)
+                                transTmp *= -1;
+                            balanceTmp += transTmp;
+                            expensesLine4.BackColor = transTmp < 0 ? Color.Firebrick : Color.RoyalBlue;
+                            expensesLine4.ForeColor = transTmp < 0 ? Color.Black : Color.White;
+                            start = new DateTime(2019, 12, 16);
+                            reee = rand.Next(10, 15);
+                            start = start.AddDays(Convert.ToDouble(reee) * -1);
+                            expensesLine4.Text = "On " + start.ToShortDateString() + " a transcation of " + transTmp.ToString("#,###,###.##") + " => " + balanceTmp.ToString("#,###,###.##");
+                            expensesLine4.Visible = true;
+
+                            transTmp = GetRandomNumber(10.0, 500.0);
+                            reee = rand.Next(2);
+                            if (reee == 0)
+                                transTmp *= -1;
+                            balanceTmp += transTmp;
+                            expensesLine5.BackColor = transTmp < 0 ? Color.Firebrick : Color.RoyalBlue;
+                            expensesLine5.ForeColor = transTmp < 0 ? Color.Black : Color.White;
+                            start = new DateTime(2019, 12, 16);
+                            reee = rand.Next(10);
+                            start = start.AddDays(Convert.ToDouble(reee) * -1);
+                            expensesLine5.Text = "On " + start.ToShortDateString() + " a transcation of " + transTmp.ToString("#,###,###.##") + " => " + balanceTmp.ToString("#,###,###.##");
+                            expensesLine5.Visible = true;
+
+
+                            finalBalanceLab.Text = "Final Balance :  $" + balanceTmp.ToString("#,###,###.##");
+                            finalBalanceLab.Visible = true;
+
+                        }
                         else
                         { MessageBox.Show("Invalid Credentials.", "Invalid Credentials."); this.Close(); }
                     }

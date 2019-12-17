@@ -55,10 +55,17 @@
             this.yellowButton = new System.Windows.Forms.Button();
             this.maxPatternLabel = new System.Windows.Forms.Label();
             this.minPatternLabel = new System.Windows.Forms.Label();
+            this.expensesLine1 = new System.Windows.Forms.Label();
+            this.transactionsLabel = new System.Windows.Forms.Label();
             this.passwordTextBox = new Capstone_Project_598.TextBox2();
             this.usernameTextBox = new Capstone_Project_598.TextBox2();
             this.minButton = new Capstone_Project_598.ButtonZ();
             this.closeButton = new Capstone_Project_598.ButtonZ();
+            this.expensesLine2 = new System.Windows.Forms.Label();
+            this.expensesLine3 = new System.Windows.Forms.Label();
+            this.expensesLine4 = new System.Windows.Forms.Label();
+            this.expensesLine5 = new System.Windows.Forms.Label();
+            this.finalBalanceLab = new System.Windows.Forms.Label();
             this.TopPanel.SuspendLayout();
             this.leftTopPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -359,6 +366,27 @@
             this.minPatternLabel.Text = "# min: 8 characters #";
             this.minPatternLabel.Visible = false;
             // 
+            // expensesLine1
+            // 
+            this.expensesLine1.AutoSize = true;
+            this.expensesLine1.BackColor = System.Drawing.SystemColors.Control;
+            this.expensesLine1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.expensesLine1.Location = new System.Drawing.Point(21, 118);
+            this.expensesLine1.Name = "expensesLine1";
+            this.expensesLine1.Size = new System.Drawing.Size(51, 20);
+            this.expensesLine1.TabIndex = 49;
+            this.expensesLine1.Text = "label3";
+            // 
+            // transactionsLabel
+            // 
+            this.transactionsLabel.AutoSize = true;
+            this.transactionsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.transactionsLabel.Location = new System.Drawing.Point(21, 64);
+            this.transactionsLabel.Name = "transactionsLabel";
+            this.transactionsLabel.Size = new System.Drawing.Size(136, 25);
+            this.transactionsLabel.TabIndex = 50;
+            this.transactionsLabel.Text = "Transactions";
+            // 
             // passwordTextBox
             // 
             this.passwordTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -418,11 +446,73 @@
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
+            // expensesLine2
+            // 
+            this.expensesLine2.AutoSize = true;
+            this.expensesLine2.BackColor = System.Drawing.SystemColors.Control;
+            this.expensesLine2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.expensesLine2.Location = new System.Drawing.Point(21, 144);
+            this.expensesLine2.Name = "expensesLine2";
+            this.expensesLine2.Size = new System.Drawing.Size(51, 20);
+            this.expensesLine2.TabIndex = 51;
+            this.expensesLine2.Text = "label3";
+            // 
+            // expensesLine3
+            // 
+            this.expensesLine3.AutoSize = true;
+            this.expensesLine3.BackColor = System.Drawing.SystemColors.Control;
+            this.expensesLine3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.expensesLine3.Location = new System.Drawing.Point(21, 171);
+            this.expensesLine3.Name = "expensesLine3";
+            this.expensesLine3.Size = new System.Drawing.Size(51, 20);
+            this.expensesLine3.TabIndex = 52;
+            this.expensesLine3.Text = "label3";
+            // 
+            // expensesLine4
+            // 
+            this.expensesLine4.AutoSize = true;
+            this.expensesLine4.BackColor = System.Drawing.SystemColors.Control;
+            this.expensesLine4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.expensesLine4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.expensesLine4.Location = new System.Drawing.Point(21, 196);
+            this.expensesLine4.Name = "expensesLine4";
+            this.expensesLine4.Size = new System.Drawing.Size(51, 20);
+            this.expensesLine4.TabIndex = 53;
+            this.expensesLine4.Text = "label3";
+            // 
+            // expensesLine5
+            // 
+            this.expensesLine5.AutoSize = true;
+            this.expensesLine5.BackColor = System.Drawing.SystemColors.Control;
+            this.expensesLine5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.expensesLine5.Location = new System.Drawing.Point(21, 220);
+            this.expensesLine5.Name = "expensesLine5";
+            this.expensesLine5.Size = new System.Drawing.Size(51, 20);
+            this.expensesLine5.TabIndex = 54;
+            this.expensesLine5.Text = "label3";
+            // 
+            // finalBalanceLab
+            // 
+            this.finalBalanceLab.AutoSize = true;
+            this.finalBalanceLab.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.finalBalanceLab.Location = new System.Drawing.Point(84, 267);
+            this.finalBalanceLab.Name = "finalBalanceLab";
+            this.finalBalanceLab.Size = new System.Drawing.Size(136, 25);
+            this.finalBalanceLab.TabIndex = 55;
+            this.finalBalanceLab.Text = "Transactions";
+            // 
             // LogonForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(413, 319);
+            this.Controls.Add(this.finalBalanceLab);
+            this.Controls.Add(this.expensesLine5);
+            this.Controls.Add(this.expensesLine4);
+            this.Controls.Add(this.expensesLine3);
+            this.Controls.Add(this.expensesLine2);
+            this.Controls.Add(this.transactionsLabel);
+            this.Controls.Add(this.expensesLine1);
             this.Controls.Add(this.minPatternLabel);
             this.Controls.Add(this.maxPatternLabel);
             this.Controls.Add(this.yellowButton);
@@ -499,5 +589,12 @@
         private System.Windows.Forms.Button yellowButton;
         private System.Windows.Forms.Label maxPatternLabel;
         private System.Windows.Forms.Label minPatternLabel;
+        private System.Windows.Forms.Label expensesLine1;
+        private System.Windows.Forms.Label transactionsLabel;
+        private System.Windows.Forms.Label expensesLine2;
+        private System.Windows.Forms.Label expensesLine3;
+        private System.Windows.Forms.Label expensesLine4;
+        private System.Windows.Forms.Label expensesLine5;
+        private System.Windows.Forms.Label finalBalanceLab;
     }
 }
